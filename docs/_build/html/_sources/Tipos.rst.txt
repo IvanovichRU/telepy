@@ -2,15 +2,49 @@
 Tipos
 ==================
 Los tipos dentro de esta librería estan diseñados a partir del `Telegram Bot API <https://core.telegram.org/bots/api>`_.
-La librería es inteligente y entenderá qué tipo debe asignar al JSON obtenido mediante el API. A continuación todos Los
-tipos de la librería.
+La librería es inteligente y entenderá qué tipo debe asignar al JSON obtenido mediante el API. A continuación se encuentran
+todos los tipos de la librería.
 
-Usuario_TelePy
+.. _usuario-tp:
+
+Usuario_tp
 ___________________
-Representa un usuario de Telegram, es posible que sea un bot o un usuario real.
+| Representa un usuario de Telegram, es posible que sea un bot o un usuario real.
+| Este tipo es el padre de los dos tipos de usuario, los cuales son :ref:`persona-tp` y :ref:`bot-tp` y contiene las propiedades
+  mínimas que todos los usuarios deben tener.
 
-======= ====== ===============================================
-Miembro Tipo   Descripción
-======= ====== ===============================================
-id      int    El identificador único para este usuario o bot.
-======= ====== ===============================================
+============= ====== ===============================================
+Propiedad     Tipo   Descripción
+============= ====== ===============================================
+id            int    El identificador único para este usuario o bot.
+es_bot        bool   Es True si el usuario es un bot.
+primer_nombre str    El primer nombre del usuario.
+usuario       str    El nombre de usuario del usuario.
+idioma        str    Código de lenguaje IETF asignado del usuario.
+============= ====== ===============================================
+
+.. _persona-tp:
+
+Persona_tp
+__________
+| Representa un usuario el cual no es un bot, es hijo de :ref:`usuario-tp` y hereda todas sus propiedades.
+
+============= ====== ===============================================
+Propiedad     Tipo   Descripción
+============= ====== ===============================================
+apellido      str    El apellido del usuario.
+============= ====== ===============================================
+
+.. _bot-tp:
+
+Bot_tp
+__________
+| Representa un usuario bot, es hijo de :ref:`usuario-tp` y hereda todas sus propiedades.
+
+================ ====== ===============================================
+Propiedad        Tipo   Descripción
+================ ====== ===============================================
+unible_a_grupos  bool   Es True si el bot puede ser invitado a grupos.
+lee_todo         bool   Es True si el bot lee todos los mensajes dentro de un grupo.
+consultas_dentro bool   Es True si el bot soporta el modo dentro de linea "inline mode".
+================ ====== ===============================================
