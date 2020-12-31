@@ -13,7 +13,7 @@ Usuarios
 
 .. _usuario-tp:
 
-Usuario_tp
+Usuario
 ----------
 | Representa un usuario de Telegram, es posible que sea un bot o un usuario real.
 | Este tipo es el padre de los dos tipos de usuario, los cuales son :ref:`persona-tp` y :ref:`bot-tp`.
@@ -32,7 +32,7 @@ idioma        str    Código de lenguaje IETF asignado.
 
 .. _persona-tp:
 
-Persona_tp
+Persona
 ----------
 | Representa un usuario el cual no es un bot, es hijo de :ref:`usuario-tp` y hereda todas sus propiedades.
 | Agrega además, la de la siguiente tabla.
@@ -45,7 +45,7 @@ apellido      str    El apellido del usuario.
 
 .. _bot-tp:
 
-Bot_tp
+Bot
 ------
 | Representa un usuario bot, es hijo de :ref:`usuario-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
@@ -66,32 +66,32 @@ Chats
 
 .. _chat-tp:
 
-Chat_tp
+Chat
 -------
 | Representa un chat de Telegram. Es el padre de todos los tipos de chat.
 | Estos son:
 
-*   ChatPrivado_tp
-*   Grupo_tp
-*   SuperGrupo_tp
-*   Canal_tp
+*   ChatPrivado
+*   Grupo
+*   SuperGrupo
+*   Canal
 
 | Contiene las propiedades mínimas que todos los chats deben tener.
 | Sus propiedades son las de la siguiente tabla.
 
-================ ========== =========================================================================
-Propiedad        Tipo       Descripción
-================ ========== =========================================================================
-id               int        El identificador único para este chat.
-tipo             str        Determina el tipo de chat que es del enlistado anterior.
-foto             bytes      La foto de perfil del chat, como aparece en Telegram.
-mensaje_anclado  Mensaje_tp El mensaje anclado al chat más reciente.
-cambia_stickers  bool       Es True si el bot puede cambiar el set de stickers del chat.
-================ ========== =========================================================================
+================ =================== =========================================================================
+Propiedad        Tipo                Descripción
+================ =================== =========================================================================
+id               int                 El identificador único para este chat.
+tipo             str                 Determina el tipo de chat que es del enlistado anterior.
+foto             bytes               La foto de perfil del chat, como aparece en Telegram.
+mensaje_anclado  :ref:`mensaje-tp`   El mensaje anclado al chat más reciente.
+cambia_stickers  bool                Es True si el bot puede cambiar el set de stickers del chat.
+================ =================== =========================================================================
 
 .. _chat-privado-tp:
 
-ChatPrivado_tp
+ChatPrivado
 --------------
 | Representa un chat privado en Telegram, en este solo participan dos personas, es hijo de :ref:`chat-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
@@ -107,7 +107,7 @@ bio              str        La bio de la otra persona en el chat privado.
 
 .. _grupo-tp:
 
-Grupo_tp
+Grupo
 --------
 | Representa un grupo en Telegram en el cual puede haber hasta 200 miembros, es hijo de :ref:`chat-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
@@ -118,12 +118,12 @@ Propiedad        Tipo             Descripción
 título           str              El título del grupo como aparece en Telegram.
 descripción      str              La descripción del grupo como aparece en Telegram.
 invitación       str              El link de invitación al grupo.
-permisos         PermisosChat_tp  Los permisos por default de miembros en el grupo.
+permisos         PermisosChat     Los permisos por default de miembros en el grupo.
 ================ ================ =========================================================================
 
 .. _supergrupo-tp:
 
-SuperGrupo_tp
+SuperGrupo
 --------------
 | Representa un supergrupo en Telegram, en el cual puede haber hasta 5,000 suscriptores o miembros, es hijo de :ref:`chat-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
@@ -134,14 +134,14 @@ Propiedad            Tipo             Descripción
 título               str              El título del supergrupo como aparece en Telegram.
 descripción          str              La descripción del supergrupo como aparece en Telegram.
 invitación           str              El link de invitación al supergrupo.
-permisos             PermisosChat_tp  Los permisos por default de miembros en el supergrupo.
+permisos             PermisosChat     Los permisos por default de miembros en el supergrupo.
 retraso              int              El retraso entre mensajes del supergrupo en modo lento.
 nombre_set_stickers  str              El nombre del set de stickers del supergrupo.
 ==================== ================ =========================================================================
 
 .. _canal-tp:
 
-Canal_tp
+Canal
 --------
 | Representa un canal en Telegram, el cual puede tener un número ilimitado de suscriptores, es hijo de :ref:`chat-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
@@ -162,21 +162,19 @@ Mensajes
 
 .. _mensaje-tp:
 
-Mensaje_tp
+Mensaje
 ----------
 | Representa un mensaje leído por el bot dentro de algún chat en el que participa. Es padre de todos los tipos de mensaje.
 | Estos son:
 
-*   MensajeReenviado_tp
-*   MensajeBot_tp
-*   MensajeRespuesta_tp
-*   MensajeMultimedia_tp
-*   MensajeEncuesta_tp
-*   MensajeCambios_tp
-*   MensajeFactura_tp
-*   MensajeVariado_tp
+*   MensajeReenviado
+*   MensajeBot
+*   MensajeRespuesta
+*   MensajeMultimedia
+*   MensajeCambios
+*   MensajeVariado
 
-| Contiene las propiedades mínimas que todos los chats deben tener.
+| Contiene las propiedades mínimas que todos los mensajes deben tener.
 | Sus propiedades son las de la siguiente tabla.
 
 ==================== ================ =========================================================================
@@ -190,54 +188,57 @@ fecha_editado        int              La fecha en la que se editó el mensaje po
 
 .. _mensaje-reenviado-tp:
 
-MensajeReenviado_tp
+MensajeReenviado
 -------------------
 | Representa un mensaje reenviado de algún lugar. Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
 
-==================== ================== =========================================================================
+==================== ================== ===============================================================================
 Propiedad            Tipo               Descripción
-==================== ================== =========================================================================
+==================== ================== ===============================================================================
 remitente            :ref:`usuario-tp`  El usuario que envió el mensaje reenviado, del chat local.
 texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
+entidades            list[Entidad]      Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
 reenviado_remitente  :ref:`usuario-tp`  El usuario que envió el mensaje **original**.
 reenviado_de_chat    :ref:`chat-tp`     La información de mensaje si es reenviado de un canal.
 reenviado_id         int                El identificador único del mensaje **original** si es reenviado de un canal.
 reenviado_firma      str                La firma del autor de la publicación si es reenviado de un canal.
 reenviado_nombre     str                El nombre del remitente en caso de que no comparta su perfil completo.
 reenviado_fecha      int                La fecha en la que se envió el mensaje **original** en tiempo UNIX.
-==================== ================== =========================================================================
+==================== ================== ===============================================================================
 
 .. _mensaje-bot:
 
-MensajeBot_tp
+MensajeBot
 -------------
 | Representa un mensaje proveniente de un bot. Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades.
-| Agrega además, la de la siguiente tabla.
+| Agrega además, las de la siguiente tabla.
 
 ==================== ================== =========================================================================
 Propiedad            Tipo               Descripción
 ==================== ================== =========================================================================
-via_bot              Usuario_tp         El bot mediante el cual se envió el mensaje.
+via_bot              Usuario            El bot mediante el cual se envió el mensaje.
 texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
+entidades            list[Entidad]      Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
 ==================== ================== =========================================================================
 
 .. _mensaje-respuesta-tp:
 
 MensajeRespuesta_tp
 | Representa un mensaje que es respuesta a otro dentro del mismo chat. Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades.
-| Agrega además, la de la siguiente tabla.
+| Agrega además, las de la siguiente tabla.
 
 ==================== ================== =========================================================================
 Propiedad            Tipo               Descripción
 ==================== ================== =========================================================================
 respuesta_a          :ref:`mensaje-tp`  El mensaje **original** al cual éste responde.
 texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
+entidades            list[Entidad]      Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
 ==================== ================== =========================================================================
 
-.. _mensaje-multimedia:
+.. _mensaje-multimedia-tp:
 
-MensajeMultimedia_tp
+MensajeMultimedia
 --------------------
 | Representa un mensaje que tiene contenido multimedia como lo son:
 
@@ -248,3 +249,43 @@ MensajeMultimedia_tp
 *   Stickers
 *   Videos
 *   Notas de voz
+
+| Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades. En general, un objeto de este tipo tendrá solo **una**
+  de las propiedades en la siguiente tabla aparte de las que hereda de Mensaje. Sin embargo, por simplicidad, todas se
+  contienen en este tipo.
+
+==================== ================== ===============================================================================
+Propiedad            Tipo               Descripción
+==================== ================== ===============================================================================
+animacion            Animación          El mensaje contiene una Animación que se almacena en esta propiedad.
+audio                Audio              El mensaje contiene un Audio que se almacena en esta propiedad.
+documento            Documento          El mensaje contienen un Documento que se almacena en esta propiedad.
+foto                 list[Foto]         El mensaje contiene una lista de Fotos  que se almacena en esta propiedad.
+sticker              Sticker            El mensaje contiene un Sticker que se almacena en esta propiedad.
+vídeo                Video              El mensaje contiene un Vídeo que se almacena en esta propiedad.
+vídeo_nota           VideoNota          El mensaje contiene una VídeoNota que se almacena en esta propiedad.
+nota_voz             NotaVoz            El mensaje contiene una NotaVoz que se almacena en esta propiedad.
+leyenda              str                La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
+entidades            list[Entidad]      La lista de entidades en la leyenda, tales como usuarios, URLs, comandos, etc.
+==================== ================== ===============================================================================
+
+.. _mensaje-cambios-tp:
+
+MensajeCambios
+---------------
+| Representa un mensaje que registra un cambio en el :ref:`chat-tp` donde se recibió este mensaje. Es hijo de
+  :ref:`mensaje-tp` y hereda todas sus propiedades. En general, un objeto de este tipo tendrá solo **algunas**
+  de las propiedades en la siguiente tabla aparte de las que hereda de Mensaje. Sin embargo, por simplicidad,
+  todas se contienen un este tipo.
+
+==================== ========================= =============================================================================================
+Propiedad            Tipo                      Descripción
+==================== ========================= =============================================================================================
+nuevos_miembros      list[:ref:`usuario-tp`]   La lista de miembros nuevos que fueron agregados al :ref:`chat-tp` o :ref:`supergrupo-tp`
+miembro_eliminado    :ref:`usuario-tp`         El miembro que fue removido en este mensaje.
+nuevo_título         str                       El nuevo título del :ref:`chat-tp` que se cambió en este mensaje.
+nueva_foto           list[TamañoFoto]          La nueva foto del :ref:`chat-tp` que se cambió en este mensaje.
+id_chat_supergrupo   int                       El identificador único del :ref:`supergrupo-tp` en el cual este :ref:`grupo-tp` se convirtió.
+id_supergrupo_chat   int                       El identificador único del :ref:`grupo-tp` en el cual este :ref:`supergrupo-tp` se convirtió.
+mensaje_anclado      :ref:`mensaje-tp`         El Mensaje que fue anclado a este :ref:`chat-tp` en este mensaje.
+==================== ========================= =============================================================================================
