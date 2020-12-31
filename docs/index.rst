@@ -5,5 +5,5 @@
    :maxdepth: 2
    :caption: Contenidos:
 
-   acerca-de-mi
    Tipos
+   acerca-de-mi
