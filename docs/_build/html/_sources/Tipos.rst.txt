@@ -278,11 +278,14 @@ MensajeCambios
   de las propiedades en la siguiente tabla aparte de las que hereda de Mensaje. Sin embargo, por simplicidad,
   todas se contienen un este tipo.
 
-==================== ========================= =========================================================================================
+==================== ========================= =============================================================================================
 Propiedad            Tipo                      Descripción
-==================== ========================= =========================================================================================
+==================== ========================= =============================================================================================
 nuevos_miembros      list[:ref:`usuario-tp`]   La lista de miembros nuevos que fueron agregados al :ref:`chat-tp` o :ref:`supergrupo-tp`
 miembro_eliminado    :ref:`usuario-tp`         El miembro que fue removido en este mensaje.
 nuevo_título         str                       El nuevo título del :ref:`chat-tp` que se cambió en este mensaje.
-
-==================== ========================= =========================================================================================
+nueva_foto           list[TamañoFoto]          La nueva foto del :ref:`chat-tp` que se cambió en este mensaje.
+id_chat_supergrupo   int                       El identificador único del :ref:`supergrupo-tp` en el cual este :ref:`grupo-tp` se convirtió.
+id_supergrupo_chat   int                       El identificador único del :ref:`grupo-tp` en el cual este :ref:`supergrupo-tp` se convirtió.
+mensaje_anclado      :ref:`mensaje-tp`         El Mensaje que fue anclado a este :ref:`chat-tp` en este mensaje.
+==================== ========================= =============================================================================================
