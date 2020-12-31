@@ -205,3 +205,9 @@ reenviado_firma      str                La firma del autor de la publicación si
 reenviado_nombre     str                El nombre del remitente en caso de que no comparta su perfil completo.
 reenviado_fecha      int                La fecha en la que se envió el mensaje **original** en tiempo UNIX.
 ==================== ================== =========================================================================
+
+.. code-block:: python3
+    :linenos:
+
+    while True:
+        I.love(you)
