@@ -35,7 +35,7 @@ idioma        str    Código de lenguaje IETF asignado.
 Persona_tp
 ----------
 | Representa un usuario el cual no es un bot, es hijo de :ref:`usuario-tp` y hereda todas sus propiedades.
-| Agrega además, las de la siguiente tabla.
+| Agrega además, la de la siguiente tabla.
 
 ============= ====== =========================================================================
 Propiedad     Tipo   Descripción
@@ -185,6 +185,7 @@ Propiedad            Tipo             Descripción
 id                   int              El identificador único para este mensaje dentro de este chat.
 fecha                int              La fecha en la que se envió el mensaje en tiempo UNIX.
 chat                 :ref:`chat-tp`   El chat al que pertenece este mensaje.
+fecha_editado        int              La fecha en la que se editó el mensaje por última vez.
 ==================== ================ =========================================================================
 
 .. _mensaje-reenviado-tp:
@@ -198,6 +199,7 @@ MensajeReenviado_tp
 Propiedad            Tipo               Descripción
 ==================== ================== =========================================================================
 remitente            :ref:`usuario-tp`  El usuario que envió el mensaje reenviado, del chat local.
+texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
 reenviado_remitente  :ref:`usuario-tp`  El usuario que envió el mensaje **original**.
 reenviado_de_chat    :ref:`chat-tp`     La información de mensaje si es reenviado de un canal.
 reenviado_id         int                El identificador único del mensaje **original** si es reenviado de un canal.
@@ -206,8 +208,29 @@ reenviado_nombre     str                El nombre del remitente en caso de que n
 reenviado_fecha      int                La fecha en la que se envió el mensaje **original** en tiempo UNIX.
 ==================== ================== =========================================================================
 
-.. code-block:: python3
-    :linenos:
+.. _mensaje-bot:
 
-    while True:
-        I.love(you)
+MensajeBot_tp
+-------------
+| Representa un mensaje proveniente de un bot. Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades.
+| Agrega además, la de la siguiente tabla.
+
+==================== ================== =========================================================================
+Propiedad            Tipo               Descripción
+==================== ================== =========================================================================
+via_bot              Usuario_tp         El bot mediante el cual se envió el mensaje.
+texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
+==================== ================== =========================================================================
+
+.. _mensaje-respuesta-tp:
+
+MensajeRespuesta_tp
+| Representa un mensaje que es respuesta a otro dentro del mismo chat. Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades.
+| Agrega además, la de la siguiente tabla.
+
+==================== ================== =========================================================================
+Propiedad            Tipo               Descripción
+==================== ================== =========================================================================
+respuesta_a          :ref:`mensaje-tp`  El mensaje original al cual este responde.
+texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
+==================== ================== =========================================================================
