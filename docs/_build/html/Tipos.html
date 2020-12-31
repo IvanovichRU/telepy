@@ -99,7 +99,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#canal-tp">Canal_tp</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mensajes">Mensajes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mensajes">Mensajes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mensaje-tp">Mensaje_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mensajereenviado-tp">MensajeReenviado_tp</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -229,9 +233,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 9%" />
-<col style="width: 71%" />
+<col style="width: 14%" />
+<col style="width: 7%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -255,9 +259,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 7%" />
-<col style="width: 74%" />
+<col style="width: 17%" />
+<col style="width: 6%" />
+<col style="width: 77%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -305,9 +309,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 18%" />
-<col style="width: 11%" />
-<col style="width: 70%" />
+<col style="width: 16%" />
+<col style="width: 10%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -347,9 +351,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 18%" />
-<col style="width: 11%" />
-<col style="width: 70%" />
+<col style="width: 16%" />
+<col style="width: 10%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -385,9 +389,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 66%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -423,9 +427,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 16%" />
-<col style="width: 63%" />
+<col style="width: 18%" />
+<col style="width: 15%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -469,9 +473,9 @@ todos los tipos de la librería.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 16%" />
-<col style="width: 63%" />
+<col style="width: 18%" />
+<col style="width: 15%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -482,15 +486,15 @@ todos los tipos de la librería.</p>
 <tbody>
 <tr class="row-even"><td><p>título</p></td>
 <td><p>str</p></td>
-<td><p>El título del supergrupo como aparece en Telegram.</p></td>
+<td><p>El título del canal como aparece en Telegram.</p></td>
 </tr>
 <tr class="row-odd"><td><p>descripción</p></td>
 <td><p>str</p></td>
-<td><p>La descripción del supergrupo como aparece en Telegram.</p></td>
+<td><p>La descripción del canal como aparece en Telegram.</p></td>
 </tr>
 <tr class="row-even"><td><p>invitación</p></td>
 <td><p>str</p></td>
-<td><p>El link de invitación al supergrupo.</p></td>
+<td><p>El link de invitación al canal.</p></td>
 </tr>
 </tbody>
 </table>
@@ -500,6 +504,104 @@ todos los tipos de la librería.</p>
 <span id="seccion-mensajes"></span><h2>Mensajes<a class="headerlink" href="#mensajes" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="line-block">
 <div class="line">A continuación están todos los tipos de mensaje disponibles en telepy.</div>
+</div>
+<div class="section" id="mensaje-tp">
+<span id="id8"></span><h3>Mensaje_tp<a class="headerlink" href="#mensaje-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un mensaje leído por el bot dentro de algún chat en el que participa. Es padre de todos los tipos de mensaje.</div>
+<div class="line">Estos son:</div>
+</div>
+<ul class="simple">
+<li><p>MensajeReenviado_tp</p></li>
+<li><p>MensajeBot_tp</p></li>
+<li><p>MensajeRespuesta_tp</p></li>
+<li><p>MensajeMultimedia_tp</p></li>
+<li><p>MensajeEncuesta_tp</p></li>
+<li><p>MensajeCambios_tp</p></li>
+<li><p>MensajeFactura_tp</p></li>
+<li><p>MensajeDiverso_tp</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Contiene las propiedades mínimas que todos los chats deben tener.</div>
+<div class="line">Sus propiedades son las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 15%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>int</p></td>
+<td><p>El identificador único para este mensaje dentro de este chat.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fecha</p></td>
+<td><p>int</p></td>
+<td><p>La fecha en la que se envió el mensaje en tiempo UNIX.</p></td>
+</tr>
+<tr class="row-even"><td><p>chat</p></td>
+<td><p><a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat_tp</span></a></p></td>
+<td><p>El chat al que pertenece este mensaje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mensajereenviado-tp">
+<span id="mensaje-reenviado-tp"></span><h3>MensajeReenviado_tp<a class="headerlink" href="#mensajereenviado-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un mensaje reenviado de algún lugar. Es hijo de <a class="reference internal" href="#mensaje-tp"><span class="std std-ref">Mensaje_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 16%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>remitente</p></td>
+<td><p><a class="reference internal" href="#usuario-tp"><span class="std std-ref">Usuario_tp</span></a></p></td>
+<td><p>El usuario que envió el mensaje reenviado, del chat local.</p></td>
+</tr>
+<tr class="row-odd"><td><p>reenviado_remitente</p></td>
+<td><p><a class="reference internal" href="#usuario-tp"><span class="std std-ref">Usuario_tp</span></a></p></td>
+<td><p>El usuario que envió el mensaje <strong>original</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p>reenviado_de_chat</p></td>
+<td><p><a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat_tp</span></a></p></td>
+<td><p>La información de mensaje si es reenviado de un canal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>reenviado_id</p></td>
+<td><p>int</p></td>
+<td><p>El identificador único del mensaje <strong>original</strong> si es reenviado de un canal.</p></td>
+</tr>
+<tr class="row-even"><td><p>reenviado_firma</p></td>
+<td><p>str</p></td>
+<td><p>La firma del autor de la publicación si es reenviado de un canal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>reenviado_nombre</p></td>
+<td><p>str</p></td>
+<td><p>El nombre del remitente en caso de que no comparta su perfil completo.</p></td>
+</tr>
+<tr class="row-even"><td><p>reenviado_fecha</p></td>
+<td><p>int</p></td>
+<td><p>La fecha en la que se envió el mensaje <strong>original</strong> en tiempo UNIX.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
