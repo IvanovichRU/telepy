@@ -174,7 +174,7 @@ Mensaje_tp
 *   MensajeEncuesta_tp
 *   MensajeCambios_tp
 *   MensajeFactura_tp
-*   MensajeDiverso_tp
+*   MensajeVariado_tp
 
 | Contiene las propiedades mínimas que todos los chats deben tener.
 | Sus propiedades son las de la siguiente tabla.
@@ -231,6 +231,20 @@ MensajeRespuesta_tp
 ==================== ================== =========================================================================
 Propiedad            Tipo               Descripción
 ==================== ================== =========================================================================
-respuesta_a          :ref:`mensaje-tp`  El mensaje original al cual este responde.
+respuesta_a          :ref:`mensaje-tp`  El mensaje **original** al cual éste responde.
 texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
 ==================== ================== =========================================================================
+
+.. _mensaje-multimedia:
+
+MensajeMultimedia_tp
+--------------------
+| Representa un mensaje que tiene contenido multimedia como lo son:
+
+*   Animaciones
+*   Audios
+*   Documentos
+*   Fotos
+*   Stickers
+*   Videos
+*   Notas de voz
