@@ -85,9 +85,21 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="acerca-de-mi.html">Acerca de mí</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tipos</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#usuario-tp">Usuario_tp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#persona-tp">Persona_tp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bot-tp">Bot_tp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usuarios">Usuarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usuario-tp">Usuario_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#persona-tp">Persona_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bot-tp">Bot_tp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#chats">Chats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chat-tp">Chat_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chatprivado-tp">ChatPrivado_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grupo-tp">Grupo_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supergrupo-tp">SuperGrupo_tp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#canal-tp">Canal_tp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mensajes">Mensajes</a></li>
 </ul>
 </li>
 </ul>
@@ -160,18 +172,24 @@
 <p>Los tipos dentro de esta librería estan diseñados a partir del <a class="reference external" href="https://core.telegram.org/bots/api">Telegram Bot API</a>.
 La librería es inteligente y entenderá qué tipo debe asignar al JSON obtenido mediante el API. A continuación se encuentran
 todos los tipos de la librería.</p>
+<div class="section" id="usuarios">
+<span id="seccion-usuarios"></span><h2>Usuarios<a class="headerlink" href="#usuarios" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="line-block">
+<div class="line">A continuación están todos los tipos de usuario disponibles en telepy.</div>
+</div>
 <div class="section" id="usuario-tp">
-<span id="id1"></span><h2>Usuario_tp<a class="headerlink" href="#usuario-tp" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="id1"></span><h3>Usuario_tp<a class="headerlink" href="#usuario-tp" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="line-block">
 <div class="line">Representa un usuario de Telegram, es posible que sea un bot o un usuario real.</div>
-<div class="line">Este tipo es el padre de los dos tipos de usuario, los cuales son <a class="reference internal" href="#persona-tp"><span class="std std-ref">Persona_tp</span></a> y <a class="reference internal" href="#bot-tp"><span class="std std-ref">Bot_tp</span></a> y contiene las propiedades
-mínimas que todos los usuarios deben tener.</div>
+<div class="line">Este tipo es el padre de los dos tipos de usuario, los cuales son <a class="reference internal" href="#persona-tp"><span class="std std-ref">Persona_tp</span></a> y <a class="reference internal" href="#bot-tp"><span class="std std-ref">Bot_tp</span></a>.</div>
+<div class="line">Contiene las propiedades mínimas que todos los usuarios deben tener.</div>
+<div class="line">Sus propiedades son las de la siguiente tabla.</div>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 9%" />
-<col style="width: 71%" />
+<col style="width: 14%" />
+<col style="width: 7%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -186,7 +204,7 @@ mínimas que todos los usuarios deben tener.</div>
 </tr>
 <tr class="row-odd"><td><p>es_bot</p></td>
 <td><p>bool</p></td>
-<td><p>Es True si el usuario es un bot.</p></td>
+<td><p>Es True si el usuario es un bot. Es automáticamente ajustado por telepy.</p></td>
 </tr>
 <tr class="row-even"><td><p>primer_nombre</p></td>
 <td><p>str</p></td>
@@ -198,15 +216,16 @@ mínimas que todos los usuarios deben tener.</div>
 </tr>
 <tr class="row-even"><td><p>idioma</p></td>
 <td><p>str</p></td>
-<td><p>Código de lenguaje IETF asignado del usuario.</p></td>
+<td><p>Código de lenguaje IETF asignado.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="persona-tp">
-<span id="id2"></span><h2>Persona_tp<a class="headerlink" href="#persona-tp" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="id2"></span><h3>Persona_tp<a class="headerlink" href="#persona-tp" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="line-block">
 <div class="line">Representa un usuario el cual no es un bot, es hijo de <a class="reference internal" href="#usuario-tp"><span class="std std-ref">Usuario_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -229,9 +248,10 @@ mínimas que todos los usuarios deben tener.</div>
 </table>
 </div>
 <div class="section" id="bot-tp">
-<span id="id3"></span><h2>Bot_tp<a class="headerlink" href="#bot-tp" title="Enlazar permanentemente con este título">¶</a></h2>
+<span id="id3"></span><h3>Bot_tp<a class="headerlink" href="#bot-tp" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="line-block">
 <div class="line">Representa un usuario bot, es hijo de <a class="reference internal" href="#usuario-tp"><span class="std std-ref">Usuario_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -248,7 +268,7 @@ mínimas que todos los usuarios deben tener.</div>
 <tbody>
 <tr class="row-even"><td><p>unible_a_grupos</p></td>
 <td><p>bool</p></td>
-<td><p>Es True si el bot puede ser invitado a grupos.</p></td>
+<td><p>Es True si el bot puede unirse a grupos.</p></td>
 </tr>
 <tr class="row-odd"><td><p>lee_todo</p></td>
 <td><p>bool</p></td>
@@ -260,6 +280,227 @@ mínimas que todos los usuarios deben tener.</div>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="section" id="chats">
+<span id="seccion-chats"></span><h2>Chats<a class="headerlink" href="#chats" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="line-block">
+<div class="line">A continuación están todos los tipos de chat disponibles en telepy.</div>
+</div>
+<div class="section" id="chat-tp">
+<span id="id4"></span><h3>Chat_tp<a class="headerlink" href="#chat-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un chat de Telegram. Es el padre de todos los tipos de chat.</div>
+<div class="line">Estos son:</div>
+</div>
+<ul class="simple">
+<li><p>ChatPrivado_tp</p></li>
+<li><p>Grupo_tp</p></li>
+<li><p>SuperGrupo_tp</p></li>
+<li><p>Canal_tp</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Contiene las propiedades mínimas que todos los chats deben tener.</div>
+<div class="line">Sus propiedades son las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>int</p></td>
+<td><p>El identificador único para este chat.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tipo</p></td>
+<td><p>str</p></td>
+<td><p>Determina el tipo de chat que es del enlistado anterior.</p></td>
+</tr>
+<tr class="row-even"><td><p>foto</p></td>
+<td><p>bytes</p></td>
+<td><p>La foto de perfil del chat, como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mensaje_anclado</p></td>
+<td><p>Mensaje_tp</p></td>
+<td><p>El mensaje anclado al chat más reciente.</p></td>
+</tr>
+<tr class="row-even"><td><p>cambia_stickers</p></td>
+<td><p>bool</p></td>
+<td><p>Es True si el bot puede cambiar el set de stickers del chat.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="chatprivado-tp">
+<span id="chat-privado-tp"></span><h3>ChatPrivado_tp<a class="headerlink" href="#chatprivado-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un chat privado en Telegram, en este solo participan dos personas, es hijo de <a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p>str</p></td>
+<td><p>El nombre de usuario de la otra persona en un chat privado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>primer_nombre</p></td>
+<td><p>str</p></td>
+<td><p>El primer nombre de la otra persona en el chat privado.</p></td>
+</tr>
+<tr class="row-even"><td><p>apellido</p></td>
+<td><p>str</p></td>
+<td><p>El apellido de la otra persona en el chat privado.</p></td>
+</tr>
+<tr class="row-odd"><td><p>bio</p></td>
+<td><p>str</p></td>
+<td><p>La bio de la otra persona en el chat privado.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="grupo-tp">
+<span id="id5"></span><h3>Grupo_tp<a class="headerlink" href="#grupo-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un grupo en Telegram en el cual puede haber hasta 200 miembros, es hijo de <a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>título</p></td>
+<td><p>str</p></td>
+<td><p>El título del grupo como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripción</p></td>
+<td><p>str</p></td>
+<td><p>La descripción del grupo como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-even"><td><p>invitación</p></td>
+<td><p>str</p></td>
+<td><p>El link de invitación al grupo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>permisos</p></td>
+<td><p>PermisosChat_tp</p></td>
+<td><p>Los permisos por default de miembros en el grupo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="supergrupo-tp">
+<span id="id6"></span><h3>SuperGrupo_tp<a class="headerlink" href="#supergrupo-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un supergrupo en Telegram, en el cual puede haber hasta 5,000 suscriptores o miembros, es hijo de <a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 16%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>título</p></td>
+<td><p>str</p></td>
+<td><p>El título del supergrupo como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripción</p></td>
+<td><p>str</p></td>
+<td><p>La descripción del supergrupo como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-even"><td><p>invitación</p></td>
+<td><p>str</p></td>
+<td><p>El link de invitación al supergrupo.</p></td>
+</tr>
+<tr class="row-odd"><td><p>permisos</p></td>
+<td><p>PermisosChat_tp</p></td>
+<td><p>Los permisos por default de miembros en el supergrupo.</p></td>
+</tr>
+<tr class="row-even"><td><p>retraso</p></td>
+<td><p>int</p></td>
+<td><p>El retraso entre mensajes del supergrupo en modo lento.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nombre_set_stickers</p></td>
+<td><p>str</p></td>
+<td><p>El nombre del set de stickers del supergrupo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="canal-tp">
+<span id="id7"></span><h3>Canal_tp<a class="headerlink" href="#canal-tp" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un canal en Telegram, el cual puede tener un número ilimitado de suscriptores, es hijo de <a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat_tp</span></a> y hereda todas sus propiedades.</div>
+<div class="line">Agrega además, las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 16%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>título</p></td>
+<td><p>str</p></td>
+<td><p>El título del supergrupo como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-odd"><td><p>descripción</p></td>
+<td><p>str</p></td>
+<td><p>La descripción del supergrupo como aparece en Telegram.</p></td>
+</tr>
+<tr class="row-even"><td><p>invitación</p></td>
+<td><p>str</p></td>
+<td><p>El link de invitación al supergrupo.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="mensajes">
+<span id="seccion-mensajes"></span><h2>Mensajes<a class="headerlink" href="#mensajes" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="line-block">
+<div class="line">A continuación están todos los tipos de mensaje disponibles en telepy.</div>
+</div>
 </div>
 </div>
 
