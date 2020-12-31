@@ -1,0 +1,8 @@
+docs/_static
+docs/_templates
+docs/acerca-de-mi.rst
+docs/conf.py
+docs/index.rst
+docs/make.bat
+docs/Makefile
+docs/Tipos.rst
