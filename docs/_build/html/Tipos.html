@@ -105,6 +105,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#mensajebot">MensajeBot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mensajemultimedia">MensajeMultimedia</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mensajecambios">MensajeCambios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mensajevariado">MensajeVariado</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilidad-de-mensajes">Utilidad de Mensajes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id-mensaje">IdMensaje</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entidadmensaje">EntidadMensaje</a></li>
 </ul>
 </li>
 </ul>
@@ -568,8 +574,8 @@ todos los tipos de la librería.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 17%" />
-<col style="width: 15%" />
-<col style="width: 68%" />
+<col style="width: 18%" />
+<col style="width: 66%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Propiedad</p></th>
@@ -587,7 +593,7 @@ todos los tipos de la librería.</p>
 <td><p>El texto del mensaje en UTF-8 como aparece en Telegram.</p></td>
 </tr>
 <tr class="row-even"><td><p>entidades</p></td>
-<td><p>list[Entidad]</p></td>
+<td><p>list[EntidadMensaje]</p></td>
 <td><p>Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.</p></td>
 </tr>
 <tr class="row-odd"><td><p>reenviado_remitente</p></td>
@@ -684,7 +690,7 @@ todos los tipos de la librería.</p>
 <div class="section" id="mensajemultimedia">
 <span id="mensaje-multimedia-tp"></span><h3>MensajeMultimedia<a class="headerlink" href="#mensajemultimedia" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="line-block">
-<div class="line">Representa un mensaje que tiene contenido multimedia como lo son:</div>
+<div class="line">Representa un mensaje con contenido multimedia como lo son:</div>
 </div>
 <ul class="simple">
 <li><p>Animaciones</p></li>
@@ -723,7 +729,7 @@ contienen en este tipo.</div>
 </tr>
 <tr class="row-even"><td><p>documento</p></td>
 <td><p>Documento</p></td>
-<td><p>El mensaje contienen un Documento que se almacena en esta propiedad.</p></td>
+<td><p>El mensaje contiene un Documento que se almacena en esta propiedad.</p></td>
 </tr>
 <tr class="row-odd"><td><p>foto</p></td>
 <td><p>list[Foto]</p></td>
@@ -804,6 +810,177 @@ todas se contienen un este tipo.</div>
 <tr class="row-even"><td><p>mensaje_anclado</p></td>
 <td><p><a class="reference internal" href="#mensaje-tp"><span class="std std-ref">Mensaje</span></a></p></td>
 <td><p>El Mensaje que fue anclado a este <a class="reference internal" href="#chat-tp"><span class="std std-ref">Chat</span></a> en este mensaje.</p></td>
+</tr>
+</tbody>
+</table>
+<p>.._mensaje-variado:</p>
+</div>
+<div class="section" id="mensajevariado">
+<h3>MensajeVariado<a class="headerlink" href="#mensajevariado" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un mensaje que no envía ni una de las especificaciones de los anteriores tipos.</div>
+<div class="line">Más específicamente:</div>
+</div>
+<ul class="simple">
+<li><p>Contacto</p></li>
+<li><p>Dado</p></li>
+<li><p>Juego</p></li>
+<li><p>Encuesta</p></li>
+<li><p>Establecimiento</p></li>
+<li><p>Ubicación</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Es hijo de <a class="reference internal" href="#mensaje-tp"><span class="std std-ref">Mensaje</span></a> y hereda todas sus propiedades. Y almacena también las necesarias para manejar</div>
+<div class="line">los mensajes que contienen información de los tipos en el listado anterior.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 18%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>contacto</p></td>
+<td><p>Contacto</p></td>
+<td><p>El mensaje contiene un Contacto compartido que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>dado</p></td>
+<td><p>Dado</p></td>
+<td><p>El mensaje contiene un Dado con un valor aleatorio que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-even"><td><p>juego</p></td>
+<td><p>Juego</p></td>
+<td><p>El mensaje contiene un Juego que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>encuesta</p></td>
+<td><p>Encuesta</p></td>
+<td><p>El mensaje contiene una Encuesta que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-even"><td><p>establecimiento</p></td>
+<td><p>Establecimineto</p></td>
+<td><p>El mensaje contiene un Establecimineto que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ubicación</p></td>
+<td><p>Ubicación</p></td>
+<td><p>El mensaje contiene una Ubicación compartida que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-even"><td><p>factura</p></td>
+<td><p>Factura</p></td>
+<td><p>El mensaje contiene una Factura que se almacena en esta propiedad.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pago_exitoso</p></td>
+<td><p>PagoExitoso</p></td>
+<td><p>El mensaje contiene un PagoExitoso que se almacena en esta propiedad.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="utilidad-de-mensajes">
+<span id="seccion-utilidad-mensajes"></span><h2>Utilidad de Mensajes<a class="headerlink" href="#utilidad-de-mensajes" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="id-mensaje">
+<span id="idmensaje"></span><h3>IdMensaje<a class="headerlink" href="#id-mensaje" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa un identificador único de un mensaje, es utilizado en el método copiar_mensaje.</div>
+<div class="line">Tiene una sola propiedad:</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 18%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_mensaje</p></td>
+<td><p>int</p></td>
+<td><p>El identificador único del mensaje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="entidadmensaje">
+<span id="entidad-mensaje"></span><h3>EntidadMensaje<a class="headerlink" href="#entidadmensaje" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="line-block">
+<div class="line">Representa una entidad especial dentro de un mensaje de texto, tales como hashtags, nombres de usuario, URLs, etc.</div>
+<div class="line">Es padre de todos los tipos de entidad los cuales son:</div>
+</div>
+<ul class="simple">
+<li><p>EntidadUrl</p></li>
+<li><p>EntidadMención</p></li>
+<li><p>EntidadCódigo</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Hay más tipos de entidad, sin embargo, sólo existe manejo de información para los tipos de la lista anterior.</div>
+<div class="line">A continuación una lista de todos los tipos de entidad:</div>
+</div>
+<ul class="simple">
+<li><p>mención (&#64;nombredeusuario)</p></li>
+<li><p>hasthag (#hashtag)</p></li>
+<li><p>moneda ($MXN)</p></li>
+<li><p>comando (<a class="reference external" href="mailto:/start&#37;&#52;&#48;mi_bot">/start<span>&#64;</span>mi_bot</a>)</p></li>
+<li><p>url (<a class="reference external" href="https://telegram.org">https://telegram.org</a>)</p></li>
+<li><p>email (<a class="reference external" href="mailto:no-contestar&#37;&#52;&#48;telegram&#46;org">no-contestar<span>&#64;</span>telegram<span>&#46;</span>org</a>)</p></li>
+<li><p>teléfono (+52-111-222-3333)</p></li>
+<li><p>negritas (<strong>texto en negritas</strong>)</p></li>
+<li><p>cursiva (<em>texto en cursiva</em>)</p></li>
+<li><p>subrayado (texto subrayado)</p></li>
+<li><p>tachado (texto tachado)</p></li>
+<li><p>código (cadena monoancha)</p></li>
+<li><p>pre (bloque monoancho)</p></li>
+<li><p>enlace (para enlaces clickables)</p></li>
+<li><p>mención_texto (para usuarios sin nombre de usuario)</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Sus propiedades son las de la siguiente tabla.</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 18%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tipo</p></td>
+<td><p>str</p></td>
+<td><p>El tipo de la entidad. Vea la lista anterior.</p></td>
+</tr>
+<tr class="row-odd"><td><p>desplazo</p></td>
+<td><p>int</p></td>
+<td><p>El desplazo en unidades de código UTF-16 hasta el inicio de la entidad dentro del texto.</p></td>
+</tr>
+<tr class="row-even"><td><p>longitud</p></td>
+<td><p>int</p></td>
+<td><p>La longitud de la entidad en unidades de código UTF-16.</p></td>
+</tr>
+<tr class="row-odd"><td><p>url</p></td>
+<td><p>str</p></td>
+<td><p>El url al que lleva el enlace al darle click. <strong>sólo para enlace, no para url</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p>usuario</p></td>
+<td><p><a class="reference internal" href="#usuario-tp"><span class="std std-ref">Usuario</span></a></p></td>
+<td><p>El usuario mencionado. <strong>sólo para mención_texto, no para mención</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>lenguaje</p></td>
+<td><p>str</p></td>
+<td><p>El lenguaje de programación usado en la entidad de texto. <strong>sólo para pre, no para código</strong></p></td>
 </tr>
 </tbody>
 </table>

@@ -193,19 +193,19 @@ MensajeReenviado
 | Representa un mensaje reenviado de algún lugar. Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades.
 | Agrega además, las de la siguiente tabla.
 
-==================== ================== ===============================================================================
-Propiedad            Tipo               Descripción
-==================== ================== ===============================================================================
-remitente            :ref:`usuario-tp`  El usuario que envió el mensaje reenviado, del chat local.
-texto                str                El texto del mensaje en UTF-8 como aparece en Telegram.
-entidades            list[Entidad]      Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
-reenviado_remitente  :ref:`usuario-tp`  El usuario que envió el mensaje **original**.
-reenviado_de_chat    :ref:`chat-tp`     La información de mensaje si es reenviado de un canal.
-reenviado_id         int                El identificador único del mensaje **original** si es reenviado de un canal.
-reenviado_firma      str                La firma del autor de la publicación si es reenviado de un canal.
-reenviado_nombre     str                El nombre del remitente en caso de que no comparta su perfil completo.
-reenviado_fecha      int                La fecha en la que se envió el mensaje **original** en tiempo UNIX.
-==================== ================== ===============================================================================
+==================== ===================== ===============================================================================
+Propiedad            Tipo                  Descripción
+==================== ===================== ===============================================================================
+remitente            :ref:`usuario-tp`     El usuario que envió el mensaje reenviado, del chat local.
+texto                str                   El texto del mensaje en UTF-8 como aparece en Telegram.
+entidades            list[EntidadMensaje]  Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
+reenviado_remitente  :ref:`usuario-tp`     El usuario que envió el mensaje **original**.
+reenviado_de_chat    :ref:`chat-tp`        La información de mensaje si es reenviado de un canal.
+reenviado_id         int                   El identificador único del mensaje **original** si es reenviado de un canal.
+reenviado_firma      str                   La firma del autor de la publicación si es reenviado de un canal.
+reenviado_nombre     str                   El nombre del remitente en caso de que no comparta su perfil completo.
+reenviado_fecha      int                   La fecha en la que se envió el mensaje **original** en tiempo UNIX.
+==================== ===================== ===============================================================================
 
 .. _mensaje-bot:
 
@@ -240,7 +240,7 @@ entidades            list[Entidad]      Una lista de entidades en el mensaje, ta
 
 MensajeMultimedia
 --------------------
-| Representa un mensaje que tiene contenido multimedia como lo son:
+| Representa un mensaje con contenido multimedia como lo son:
 
 *   Animaciones
 *   Audios
@@ -259,7 +259,7 @@ Propiedad            Tipo               Descripción
 ==================== ================== ===============================================================================
 animacion            Animación          El mensaje contiene una Animación que se almacena en esta propiedad.
 audio                Audio              El mensaje contiene un Audio que se almacena en esta propiedad.
-documento            Documento          El mensaje contienen un Documento que se almacena en esta propiedad.
+documento            Documento          El mensaje contiene un Documento que se almacena en esta propiedad.
 foto                 list[Foto]         El mensaje contiene una lista de Fotos  que se almacena en esta propiedad.
 sticker              Sticker            El mensaje contiene un Sticker que se almacena en esta propiedad.
 vídeo                Video              El mensaje contiene un Vídeo que se almacena en esta propiedad.
@@ -288,4 +288,96 @@ nueva_foto           list[TamañoFoto]          La nueva foto del :ref:`chat-tp`
 id_chat_supergrupo   int                       El identificador único del :ref:`supergrupo-tp` en el cual este :ref:`grupo-tp` se convirtió.
 id_supergrupo_chat   int                       El identificador único del :ref:`grupo-tp` en el cual este :ref:`supergrupo-tp` se convirtió.
 mensaje_anclado      :ref:`mensaje-tp`         El Mensaje que fue anclado a este :ref:`chat-tp` en este mensaje.
+==================== ========================= =============================================================================================
+
+.._mensaje-variado:
+
+MensajeVariado
+--------------
+| Representa un mensaje que no envía ni una de las especificaciones de los anteriores tipos.
+| Más específicamente:
+
+*   Contacto
+*   Dado
+*   Juego
+*   Encuesta
+*   Establecimiento
+*   Ubicación
+
+| Es hijo de :ref:`mensaje-tp` y hereda todas sus propiedades. Y almacena también las necesarias para manejar
+| los mensajes que contienen información de los tipos en el listado anterior.
+
+==================== ========================= =============================================================================================
+Propiedad            Tipo                      Descripción
+==================== ========================= =============================================================================================
+contacto             Contacto                  El mensaje contiene un Contacto compartido que se almacena en esta propiedad.
+dado                 Dado                      El mensaje contiene un Dado con un valor aleatorio que se almacena en esta propiedad.
+juego                Juego                     El mensaje contiene un Juego que se almacena en esta propiedad.
+encuesta             Encuesta                  El mensaje contiene una Encuesta que se almacena en esta propiedad.
+establecimiento      Establecimineto           El mensaje contiene un Establecimineto que se almacena en esta propiedad.
+ubicación            Ubicación                 El mensaje contiene una Ubicación compartida que se almacena en esta propiedad.
+factura              Factura                   El mensaje contiene una Factura que se almacena en esta propiedad.
+pago_exitoso         PagoExitoso               El mensaje contiene un PagoExitoso que se almacena en esta propiedad.
+==================== ========================= =============================================================================================
+
+.. _seccion-utilidad-mensajes:
+
+Utilidad de Mensajes
+====================
+
+.. _id-mensaje:
+
+IdMensaje
+---------
+| Representa un identificador único de un mensaje, es utilizado en el método copiar_mensaje.
+| Tiene una sola propiedad:
+
+==================== ========================= =============================================================================================
+Propiedad            Tipo                      Descripción
+==================== ========================= =============================================================================================
+id_mensaje           int                       El identificador único del mensaje.
+==================== ========================= =============================================================================================
+
+
+.. _entidad-mensaje:
+
+EntidadMensaje
+--------------
+| Representa una entidad especial dentro de un mensaje de texto, tales como hashtags, nombres de usuario, URLs, etc.
+| Es padre de todos los tipos de entidad los cuales son:
+
+*   EntidadUrl
+*   EntidadMención
+*   EntidadCódigo
+
+| Hay más tipos de entidad, sin embargo, sólo existe manejo de información para los tipos de la lista anterior.
+| A continuación una lista de todos los tipos de entidad:
+
+*   mención (@nombredeusuario)
+*   hasthag (#hashtag)
+*   moneda ($MXN)
+*   comando (/start@mi_bot)
+*   url (https://telegram.org)
+*   email (no-contestar@telegram.org)
+*   teléfono (+52-111-222-3333)
+*   negritas (**texto en negritas**)
+*   cursiva (*texto en cursiva*)
+*   subrayado (texto subrayado)
+*   tachado (texto tachado)
+*   código (cadena monoancha)
+*   pre (bloque monoancho)
+*   enlace (para enlaces clickables)
+*   mención_texto (para usuarios sin nombre de usuario)
+
+| Sus propiedades son las de la siguiente tabla.
+
+==================== ========================= =============================================================================================
+Propiedad            Tipo                      Descripción
+==================== ========================= =============================================================================================
+tipo                 str                       El tipo de la entidad. Vea la lista anterior.
+desplazo             int                       El desplazo en unidades de código UTF-16 hasta el inicio de la entidad dentro del texto.
+longitud             int                       La longitud de la entidad en unidades de código UTF-16.
+url                  str                       El url al que lleva el enlace al darle click. **sólo para enlace, no para url**.
+usuario              :ref:`usuario-tp`         El usuario mencionado. **sólo para mención_texto, no para mención**
+lenguaje             str                       El lenguaje de programación usado en la entidad de texto. **sólo para pre, no para código**
 ==================== ========================= =============================================================================================
