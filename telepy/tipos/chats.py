@@ -7,6 +7,40 @@ class Chat:
         self.mensaje_anclado = None
         self.cambia_stickers = False
 
+        # self.id = objeto['id']
+        # if 'type' in objeto:
+        #     self.tipo = objeto['type']
+        # if 'title' in objeto:
+        #     self.título = objeto['title']
+        # if 'username' in objeto:
+        #     self.usuario = objeto['username']
+        # if 'first_name' in objeto:
+        #     self.primer_nombre = objeto['first_name']
+        # if 'last_name' in objeto:
+        #     self.apellido = objeto['last_name']
+        # if 'photo' in objeto:
+        #     self.foto = objeto['photo']
+        # if 'bio' in objeto:
+        #     self.bio = objeto['bio']
+        # if 'description' in objeto:
+        #     self.descripción = objeto['description']
+        # if 'invite_link' in objeto:
+        #     self.invitación = objeto['invite_link']
+        # if 'pinned_message' in objeto:
+        #     self.mensaje_anclado = objeto['pinned_message']
+        # if 'permissions' in objeto:
+        #     self.permisos = objeto['permissions']
+        # if 'slow_mode_delay' in objeto:
+        #     self.nombre_set_stickers = objeto['slow_mode_delay']
+        # if 'sticker_set_name' in objeto:
+        #     self.nombre_set_stickers = objeto['sticker_set_name']
+        # if 'can_set_sticker_set' in objeto:
+        #     self.cambia_stickers = objeto['can_set_sticker_set']
+        # if 'linked_chat_id' in objeto:
+        #     self.retraso = objeto['linked_chat_id']
+        # if 'location' in objeto:
+            # self.ubicación = objeto['location']
+
 class ChatPrivado(Chat):
     """Un chat privado de Telegram, en él solo participan dos usuarios de Telegram."""
     def __init__(self, objeto: dict):

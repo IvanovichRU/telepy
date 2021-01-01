@@ -18,11 +18,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+
 import aiohttp
 import asyncio
 import json
-import clases_telepy
-from conversiones import dict_a_actualización_telepy
+from tipos import mensajes, chats
 
 
 class Bot_TelePy:
@@ -47,7 +47,7 @@ class Bot_TelePy:
         if chat_id not in self.chats:
             self.chats.append(chat_id)
 
-    def __leer_actualización(self, actualización: clases_telepy.Actualización_TelePy):
+    def __leer_actualización(self, actualización):
         print(actualización.mensaje.texto)
 
     def __procesar_actualizaciones(self):
@@ -56,7 +56,7 @@ class Bot_TelePy:
 
     def __vaciar_actualizaciones(self, actualizaciones: list[dict]):
         for actualización in actualizaciones:
-            self.actualizaciones.append(dict_a_actualización_telepy(actualización))
+            self.actualizaciones.append({})
 
     """
     Aquí inician las funciones directas del 'Telegram Bot API' proporcionado en: https://core.telegram.org/bots/api
@@ -114,18 +114,11 @@ class Bot_TelePy:
 
     async def iniciar(self):
         primer_actualización = await self.__obtener_actualizaciones()
-        while True:
-            if primer_actualización['result'] != []:
-                self.__vaciar_actualizaciones(primer_actualización['result'])
-                self.__procesar_actualizaciones()
-            else:
-                print('No hay actualizaciones...(1)')
-            await asyncio.sleep(5)
 
 
 
 async def principal():
-    cliente = Bot_TelePy('token')
+    cliente = Bot_TelePy('1438855926:AAGKS_vlbC4MORHSqAO1DbaF39CnfYzJVME')
     await cliente.iniciar()
 
 loop = asyncio.get_event_loop()

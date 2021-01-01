@@ -1,3 +1,4 @@
 docs/make.bat
 docs/Makefile
 telepy/.vscode
+*__pycache__
