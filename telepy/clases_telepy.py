@@ -23,12 +23,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+class Usuario:
+    id: int # El identificador único para este usuario o bot.
+    es_bot: bool # Es  True si el usuario es un bot.
+    primer_nombre: str # El primer nombre del usuario.
+    usuario: str # El nombre de usuario del usuario.
+    idioma: str # Código de lenguaje IETF asignado.
 
+class Persona(Usuario):
+    apellido: str
 
 class Mensaje_TelePy:
     id: int
-    remitente: Usuario_TelePy
-    chat: Chat_TelePy
+    remitente: Usuario
+    chat: Chat
     fecha: int
 
 class Actualización_TelePy:
