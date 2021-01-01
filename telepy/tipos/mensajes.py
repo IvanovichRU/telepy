@@ -1,7 +1,7 @@
 class Mensaje:
     """Un mensaje leído por el bot dentro de algún chat en el que participa. Padre de todos los tipos de mensaje."""
 
-    def __init__(self):
+    def __init__(self, objeto: dict):
         self.id = 0 # El identificador único para este mensaje dentro de este chat.
         self.fecha = 0 # La fecha en la que se envió el mensaje en tiempo UNIX.
         self.chat = None # El chat al que pertenece este mensaje.
@@ -10,7 +10,7 @@ class Mensaje:
 class MensajeReenviado(Mensaje):
     """Un mensaje reenviado de algún lugar."""
 
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.remitente = None # El usuario que envió el mensaje reenviado, del chat local.
         self.texto = '' # El texto del mensaje en UTF-8 como aparece en Telegram.
@@ -25,7 +25,7 @@ class MensajeReenviado(Mensaje):
 class MensajeBot(Mensaje):
     """Un mensaje proveniente de un bot."""
 
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.via_bot = None # El bot mediante el cual se envió el mensaje.
         self.texto = '' # El texto del mensaje en UTF-8 como aparece en Telegram.
@@ -34,7 +34,7 @@ class MensajeBot(Mensaje):
 class MensajeMultimedia(Mensaje):
     """Un mensaje con contenido multimedia."""
 
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.animación = None # El mensaje contiene una Animación que se almacena en esta propiedad.
         self.audio = None # El mensaje contiene un Audio que se almacena en esta propiedad.
@@ -50,7 +50,7 @@ class MensajeMultimedia(Mensaje):
 class MensajeCambios(Mensaje):
     """Un mensaje que registra un cambio en el Chat donde se recibió este mensaje."""
 
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.neuvos_miembros = [] # La lista de miembros nuevos que fueron agregados al Chat o SuperGrupo
         self.miembro_eliminado = None # El miembro que fue removido en este mensaje.
@@ -63,7 +63,7 @@ class MensajeCambios(Mensaje):
 class MensajeVariado(Mensaje):
     """Un mensaje que no envía ni una de las especificaciones de los anteriores tipos."""
 
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.contacto = None # El mensaje contiene un Contacto compartido que se almacena en esta propiedad.
         self.dado = None # El mensaje contiene un Dado con un valor aleatorio que se almacena en esta propiedad.

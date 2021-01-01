@@ -9,7 +9,7 @@ class Chat:
 
 class ChatPrivado(Chat):
     """Un chat privado de Telegram, en él solo participan dos usuarios de Telegram."""
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.usuario = ''
         self.primer_nombre = ''
@@ -18,7 +18,7 @@ class ChatPrivado(Chat):
 
 class Grupo(Chat):
     """Un grupo de Telegram en el cual puede haber hasta 200 miembros."""
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.título = ''
         self.descripción = ''
@@ -27,7 +27,7 @@ class Grupo(Chat):
 
 class SuperGrupo(Chat):
     """Un supergrupo de Telegram en el cual puede haber hasta 5,000 suscriptores/miembros."""
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.título = ''
         self.descripción = ''
@@ -38,7 +38,7 @@ class SuperGrupo(Chat):
 
 class Canal(Chat):
     """Un canal de Telegram el cual puede tener un número ilimitado de suscriptores."""
-    def __init__(self):
+    def __init__(self, objeto: dict):
         super().__init__()
         self.título = ''
         self.descripción = ''
