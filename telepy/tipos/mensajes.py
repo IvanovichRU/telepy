@@ -4,6 +4,7 @@ class Mensaje:
     def __init__(self, objeto: dict):
         self.id = 0
         self.fecha = 0
+        self.remitente = None # El usuario que envió el mensaje reenviado, del chat local.
         self.chat = None
         self.fecha_editado = None
 
@@ -20,7 +21,6 @@ class MensajeReenviado(Mensaje):
 
     def __init__(self, objeto: dict):
         super().__init__()
-        self.remitente = None # El usuario que envió el mensaje reenviado, del chat local.
         self.texto = '' # El texto del mensaje en UTF-8 como aparece en Telegram.
         self.entidades = [] # Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
         self.reenviado_remitente = None # El usuario que envió el mensaje original.
