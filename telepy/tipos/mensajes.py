@@ -60,7 +60,7 @@ class MensajeCambios(Mensaje):
 
     def __init__(self, objeto: dict):
         super().__init__()
-        self.neuvos_miembros = [] # La lista de miembros nuevos que fueron agregados al Chat o SuperGrupo
+        self.nuevos_miembros = [] # La lista de miembros nuevos que fueron agregados al Chat o SuperGrupo
         self.miembro_eliminado = None # El miembro que fue removido en este mensaje.
         self.nuevo_título = '' # El nuevo título del Chat que se cambió en este mensaje.
         self.nueva_foto = [] # La nueva foto del Chat que se cambió en este mensaje.
