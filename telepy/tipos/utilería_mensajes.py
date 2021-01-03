@@ -1,16 +1,15 @@
 class IdMensaje:
     """Un identificador único de algún mensaje, este tipo solo es utilizado en el método 'copiar_mensaje."""
     def __init__(self):
-        super().__init__()
-        self.id_mensaje = 0
+        self.id_mensaje = 0 # El identificador único del mensaje.
 
 class EntidadMensaje:
     """Una entidad especial dentro de un mensaje de texto, tales como hashtags, nombres de usuario, URLs, etc."""
     def __init__(self):
         super().__init__()
-        self.tipo = ''
-        self.desplazo = 0
-        self.longitud = 0
-        self.url = ''
-        self.usuario = None
-        self.lenguaje = ''
+        self.tipo = '' # El tipo de entidad.
+        self.desplazo = 0 # El desplazo dentro del mensaje en unidades UTF-16.
+        self.longitud = 0 # La longitud de la entidad en unidades UTF-16.
+        self.url = '' # El url al que lleva el "text_link".
+        self.usuario = None # El usuario mencionado en el "text_mention".
+        self.lenguaje = '' # El lenguaje de programación en el "pre".

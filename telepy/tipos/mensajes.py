@@ -2,19 +2,19 @@ class Mensaje:
     """Un mensaje leído por el bot dentro de algún chat en el que participa. Padre de todos los tipos de mensaje."""
 
     def __init__(self, objeto: dict):
-        self.id = 0
-        self.fecha = 0
+        self.id = 0 # Identificador único para el mensaje dentro del chat correspondiente.
+        self.fecha = 0 # La fecha en que se envió el mensaje en tiempo Unix.
         self.remitente = None # El usuario que envió el mensaje reenviado, del chat local.
-        self.chat = None
-        self.fecha_editado = None
+        self.chat = None # El chat al que el mensaje pertenece.
+        self.fecha_editado = None # La fecha en la que el mensaje fue editado por última vez en tiempo Unix.
 
 
 class MensajeTexto(Mensaje):
     """El mensaje más común que contiene solo texto y quizá algunas Entidades."""
     def __init__(self, objeto: dict):
         super().__init__(objeto)
-        self.texto = ''
-        self.entidades = []
+        self.texto = '' # El texto UTF-8 del mensaje de 0 hasta 4096 caractéres.
+        self.entidades = [] # Entidades especiales en el texto como usuarios, URLs, comandos, etc.
 
 class MensajeReenviado(Mensaje):
     """Un mensaje reenviado de algún lugar."""
