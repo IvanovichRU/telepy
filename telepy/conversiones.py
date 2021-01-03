@@ -45,7 +45,6 @@ def desempacar_mensaje(mensaje: dict) -> mensajes.Mensaje:
         nuevo_mensaje = desempacar_mensajereenviado(mensaje)
     return nuevo_mensaje
     
-
 def desempacar_mensajereenviado(mensaje: dict) -> mensajes.MensajeReenviado:
     nuevo_mensaje = mensajes.MensajeReenviado()
     nuevo_mensaje.id = mensaje_id
