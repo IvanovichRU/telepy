@@ -15,3 +15,10 @@ class Actualización:
         self.consulta_pre_cobro = None # Nueva ConsultaPreCobro entrante, contiene información completa previa al cobro.
         self.encuesta = None # Nuevo estado de Encuesta. Los bots solo reciben información acerca de encuestas detenidas y que él mismo envía.
         self.respuesta_encueta = None # Un usuario cambió su respuesta en una encuesta no anónima. Los bots solo reciben nuevos votos en encuestas que el mismo envía.
+
+    def __str__(self) -> str:
+        cadena = 'Actualización:\n'
+        for llave in self.__dict__:
+            if self.__dict__[llave] is not None:
+                cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
+        return cadena

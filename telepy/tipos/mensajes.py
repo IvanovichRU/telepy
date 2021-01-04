@@ -1,7 +1,7 @@
 class Mensaje:
     """Un mensaje leído por el bot dentro de algún chat en el que participa. Padre de todos los tipos de mensaje."""
 
-    def __init__(self, objeto: dict):
+    def __init__(self):
         self.id = 0 # Identificador único para el mensaje dentro del chat correspondiente.
         self.fecha = 0 # La fecha en que se envió el mensaje en tiempo Unix.
         self.remitente = None # El usuario que envió el mensaje reenviado, del chat local.
@@ -11,15 +11,15 @@ class Mensaje:
 
 class MensajeTexto(Mensaje):
     """El mensaje más común que contiene solo texto y quizá algunas Entidades."""
-    def __init__(self, objeto: dict):
-        super().__init__(objeto)
+    def __init__(self):
+        super().__init__()
         self.texto = 'Sin registrar' # El texto UTF-8 del mensaje de 0 hasta 4096 caractéres.
         self.entidades = [] # Entidades especiales en el texto como usuarios, URLs, comandos, etc.
 
 class MensajeReenviado(Mensaje):
     """Un mensaje reenviado de algún lugar."""
 
-    def __init__(self, objeto: dict):
+    def __init__(self):
         super().__init__()
         self.texto = 'Sin registrar' # El texto del mensaje en UTF-8 como aparece en Telegram.
         self.entidades = [] # Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
@@ -33,7 +33,7 @@ class MensajeReenviado(Mensaje):
 class MensajeBot(Mensaje):
     """Un mensaje proveniente de un bot."""
 
-    def __init__(self, objeto: dict):
+    def __init__(self):
         super().__init__()
         self.via_bot = None # El bot mediante el cual se envió el mensaje.
         self.texto = 'Sin registrar' # El texto del mensaje en UTF-8 como aparece en Telegram.
@@ -42,23 +42,24 @@ class MensajeBot(Mensaje):
 class MensajeMultimedia(Mensaje):
     """Un mensaje con contenido multimedia."""
 
-    def __init__(self, objeto: dict):
+    def __init__(self):
         super().__init__()
         self.animación = None # El mensaje contiene una Animación que se almacena en esta propiedad.
         self.audio = None # El mensaje contiene un Audio que se almacena en esta propiedad.
         self.documento = None # El mensaje contiene un Documento que se almacena en esta propiedad.
-        self.foto = None # El mensaje contiene una lista de Fotos que se almacena en esta propiedad.
+        self.foto = [] # El mensaje contiene una lista de Fotos que se almacena en esta propiedad.
         self.sticker = None # El mensaje contiene un Sticker que se almacena en esta propiedad.
         self.vídeo = None # El mensaje contiene un Vídeo que se almacena en esta propiedad.
         self.vídeo_nota = None # El mensaje contiene una VídeoNota que se almacena en esta propiedad.
         self.nota_voz = None # El mensaje contiene una NotaVoz que se almacena en esta propiedad.
         self.leyenda = 'Sin registrar' # La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
         self.entidades = [] # La lista de entidades en la leyenda, tales como usuarios, URLs, comandos, etc.
+        self.entidades_leyenda = []
 
 class MensajeCambios(Mensaje):
     """Un mensaje que registra un cambio en el Chat donde se recibió este mensaje."""
 
-    def __init__(self, objeto: dict):
+    def __init__(self):
         super().__init__()
         self.nuevos_miembros = [] # La lista de miembros nuevos que fueron agregados al Chat o SuperGrupo
         self.miembro_eliminado = None # El miembro que fue removido en este mensaje.
@@ -71,7 +72,7 @@ class MensajeCambios(Mensaje):
 class MensajeVariado(Mensaje):
     """Un mensaje que no envía ni una de las especificaciones de los anteriores tipos."""
 
-    def __init__(self, objeto: dict):
+    def __init__(self):
         super().__init__()
         self.contacto = None # El mensaje contiene un Contacto compartido que se almacena en esta propiedad.
         self.dado = None # El mensaje contiene un Dado con un valor aleatorio que se almacena en esta propiedad.

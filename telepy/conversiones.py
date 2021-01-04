@@ -1,3 +1,4 @@
+from tipos.mensajes import *
 from tipos.actualización import *
 from tipos.chats import *
 from tipos.entradas import *
@@ -13,10 +14,11 @@ from tipos.usuarios import *
 from tipos.utilería_chats import *
 from tipos.utilería_mensajes import *
 
-def desempacar_actualización(actualización: dict) -> Actualización():
+def desempacar_actualización(actualización: dict) -> Actualización:
     nueva_actualización = Actualización()
     nueva_actualización.id = actualización['update_id']
     if 'message' in actualización:
+        print('Hay un mensaje en la act...')
         nueva_actualización.mensaje = desempacar_mensaje(actualización['message'])
     if 'edited_message' in actualización:
         nueva_actualización.mensaje_editado = desempacar_mensaje(actualización['edited_message'])
@@ -28,6 +30,7 @@ def desempacar_actualización(actualización: dict) -> Actualización():
         # nueva_actualización.consulta_en_línea = desempacar_consultaenlínea(actualización['inline_query'])
     if 'chosen_inline_result' in actualización:
         nueva_actualización.resultado_enlínea = 0
+    return nueva_actualización
 
 def desempacar_mensaje(mensaje: dict) -> Mensaje:
     if 'forward_from' in mensaje:
@@ -61,7 +64,18 @@ def desempacar_mensaje(mensaje: dict) -> Mensaje:
           'invoice' in mensaje or
           'successful_payment' in mensaje):
         return desempacar_mensajevariado(mensaje)
-    
+    else:
+        return desempacar_mensajetexto(mensaje)
+
+def desempacar_mensajetexto(mensaje: dict) -> MensajeTexto:
+    print('Entró a desempacar_mensajetexto')
+    nuevo_mensaje = MensajeTexto()
+    nuevo_mensaje.texto = mensaje['text']
+    if 'entitites' in mensaje:
+        for entidad in mensaje['entities']:
+            nuevo_mensaje.entidades.append(entidad)
+    return nuevo_mensaje
+
 def desempacar_mensajereenviado(mensaje: dict) -> MensajeReenviado:
     nuevo_mensaje = MensajeReenviado()
     nuevo_mensaje.id = mensaje['message_id']
@@ -97,7 +111,7 @@ def desempacar_mensajebot(mensaje: dict) -> MensajeBot:
         for entidad in mensaje['entities']:
             nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
     return nuevo_mensaje
-        
+
 def desempacar_mensajemultimedia(mensaje: dict) -> MensajeMultimedia:
     nuevo_mensaje = MensajeMultimedia()
     if 'animation' in mensaje:
@@ -107,7 +121,8 @@ def desempacar_mensajemultimedia(mensaje: dict) -> MensajeMultimedia:
     if 'document' in mensaje:
         nuevo_mensaje.documento = desempacar_documento(mensaje['document'])
     if 'photo' in mensaje:
-        nuevo_mensaje.foto = desempacar_tamañofoto(mensaje['photo'])
+        for foto in mensaje['photo']:
+            nuevo_mensaje.foto.append(desempacar_tamañofoto(foto))
     if 'sticker' in mensaje:
         nuevo_mensaje.sticker = desempacar_sticker(mensaje['sticker'])
     if 'video' in mensaje:
@@ -121,6 +136,9 @@ def desempacar_mensajemultimedia(mensaje: dict) -> MensajeMultimedia:
     if 'entities' in mensaje:
         for entidad in mensaje['entities']:
             nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
+    if 'caption_entities' in mensaje:
+        for entidad in mensaje['caption_entities']:
+            nuevo_mensaje.entidades_leyenda.append(desempacar_entidad(entidad))
     return nuevo_mensaje
 
 def desempacar_mensajecambios(mensaje: dict) -> MensajeCambios:
@@ -357,7 +375,7 @@ def desempacar_documento(documento: dict) -> Documento:
     return nuevo_documento
 
 def desempacar_tamañofoto(tamañofoto: dict) -> TamañoFoto:
-    nuevo_tamañofoto = TamañoFoto
+    nuevo_tamañofoto = TamañoFoto()
     nuevo_tamañofoto.id_archivo = tamañofoto['file_id']
     nuevo_tamañofoto.id_única_archivo = tamañofoto['file_unique_id']
     nuevo_tamañofoto.ancho = tamañofoto['width']
