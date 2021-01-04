@@ -22,7 +22,7 @@ SOFTWARE.
 import aiohttp
 import asyncio
 import json
-from tipos import mensajes, chats
+import conversiones
 
 
 class Bot_TelePy:

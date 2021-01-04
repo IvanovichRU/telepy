@@ -1,12 +1,21 @@
-from tipos import *
+import tipos
 
-def clasificar_actualización(objeto: dict):
-    if 'message' in objeto:
-        desempacar_mensaje(objeto['message'])
-    else:
-        print('Error al convertir JSON.\nSe recibió:\n', objeto, '\nCerrando el programa.')
-
-def desempacar_mensaje(mensaje: dict) -> mensajes.Mensaje:
+def desempacar_actualización(actualización: dict):
+    nueva_actualización = tipos.Actualización()
+    nueva_actualización.id = actualización['update_id']
+    if 'message' in actualización:
+        nueva_actualización.mensaje = desempacar_mensaje(actualización['message'])
+    if 'edited_message' in actualización:
+        nueva_actualización.mensaje_editado = desempacar_mensaje(actualización['edited_message'])
+    if 'channel_post' in actualización:
+        nueva_actualización.publicación_canal = desempacar_mensaje(actualización['channel_post'])
+    if 'edited_channel_post' in actualización:
+        nueva_actualización.publicación_editada = desempacar_mensaje(actualización['edited_channel_post'])
+    if 'inline_query' in actualización:
+        nueva_actualización.consulta_en_línea = desempacar_consultaenlínea(actualización['inline_query'])
+    if 'chosen_inline_result' in actualización:
+        nueva_actualización.resultado_enlínea = 0
+def desempacar_mensaje(mensaje: dict) -> tipos.Mensaje:
     nuevo_mensaje = None
     if 'forward_from' in mensaje:
         nuevo_mensaje = desempacar_mensajereenviado(mensaje)
@@ -45,9 +54,9 @@ def desempacar_mensaje(mensaje: dict) -> mensajes.Mensaje:
         nuevo_mensaje = desempacar_mensajereenviado(mensaje)
     return nuevo_mensaje
     
-def desempacar_mensajereenviado(mensaje: dict) -> mensajes.MensajeReenviado:
-    nuevo_mensaje = mensajes.MensajeReenviado()
-    nuevo_mensaje.id = mensaje_id
+def desempacar_mensajereenviado(mensaje: dict) -> tipos.MensajeReenviado:
+    nuevo_mensaje = tipos.MensajeReenviado()
+    nuevo_mensaje.id = mensaje['message_id']
     nuevo_mensaje.fecha = mensaje['date']
     nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
     nuevo_mensaje.chat = desempacar_chat(mensaje['chat'])
@@ -69,8 +78,8 @@ def desempacar_mensajereenviado(mensaje: dict) -> mensajes.MensajeReenviado:
     nuevo_mensaje.reenviado_fecha = mensaje['forward_date']
     return nuevo_mensaje
 
-def desempacar_mensajebot(mensaje: dict) -> mensajes.MensajeBot:
-    nuevo_mensaje = mensajes.MensajeBot()
+def desempacar_mensajebot(mensaje: dict) -> tipos.MensajeBot:
+    nuevo_mensaje = tipos.MensajeBot()
     nuevo_mensaje.via_bot = mensaje['via_bot']
     if 'text' in mensaje:
         nuevo_mensaje.texto = mensaje['text']
@@ -81,8 +90,8 @@ def desempacar_mensajebot(mensaje: dict) -> mensajes.MensajeBot:
             nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
     return nuevo_mensaje
         
-def desempacar_mensajemultimedia(mensaje: dict) -> mensajes.MensajeMultimedia:
-    nuevo_mensaje = mensajes.MensajeMultimedia()
+def desempacar_mensajemultimedia(mensaje: dict) -> tipos.MensajeMultimedia:
+    nuevo_mensaje = tipos.MensajeMultimedia()
     if 'animation' in mensaje:
         nuevo_mensaje.animación = desempacar_animación(mensaje['animation'])
     if 'audio' in mensaje:
@@ -106,8 +115,8 @@ def desempacar_mensajemultimedia(mensaje: dict) -> mensajes.MensajeMultimedia:
             nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
     return nuevo_mensaje
 
-def desempacar_mensajecambios(mensaje: dict) -> mensajes.MensajeCambios:
-    nuevo_mensaje = mensajes.MensajeCambios()
+def desempacar_mensajecambios(mensaje: dict) -> tipos.MensajeCambios:
+    nuevo_mensaje = tipos.MensajeCambios()
     if 'new_chat_members' in mensaje:
         for usuario in mensaje['new_chat_members']:
             nuevo_mensaje.nuevos_miembros.append(desempacar_usuario(usuario))
@@ -126,8 +135,8 @@ def desempacar_mensajecambios(mensaje: dict) -> mensajes.MensajeCambios:
         nuevo_mensaje.mensaje_anclado = desempacar_mensaje(mensaje['pinned_message'])
     return nuevo_mensaje
 
-def desempacar_mensajevariado(mensaje: dict) -> mensajes.MensajeVariado:
-    nuevo_mensaje = mensajes.MensajeVariado()
+def desempacar_mensajevariado(mensaje: dict) -> tipos.MensajeVariado:
+    nuevo_mensaje = tipos.MensajeVariado()
     if 'contact' in mensaje:
         nuevo_mensaje.contacto = desempacar_contacto(mensaje['contact'])
     if 'dice' in mensaje:
@@ -144,3 +153,7 @@ def desempacar_mensajevariado(mensaje: dict) -> mensajes.MensajeVariado:
         nuevo_mensaje.factura = desempacar_factura(mensaje['invoice'])
     if 'successful_payment' in mensaje:
         nuevo_mensaje.pago_exitoso = desempacar_pago_exitoso(mensaje['successful_payment'])
+
+def desempacar_usuario(usuario: dict) -> tipos.Usuario:
+    if 'via_bot' in usuario:
+        

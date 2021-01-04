@@ -8,8 +8,8 @@ class Actualización:
         self.mensaje_editado = None # La nueva versión de algún mensaje que fue editado en esta actualización.
         self.publicación_canal = None # Nueva publicación en un canal de cualquier tipo, texto, foto, sticker, etc.
         self.publicación_editada = None # La nueva versión de alguna publicación en un canal que haya sido editado.
-        self.consulta_en_línea = None # Nueva ConsultaEnlínea entrante.
-        self.resultado_en_línea = None # El resultado de una consulta_enlínea que fue elegida por un usuario y enviada a su compañero de chat.
+        self.consulta_enlínea = None # Nueva ConsultaEnlínea entrante.
+        self.resultado_enlínea = None # El resultado de una consulta_enlínea que fue elegida por un usuario y enviada a su compañero de chat.
         self.consulta_de_rellamada = None # Nueva ConsultaDeRellamada entrante.
         self.consulta_envío = None # Nueva ConsultaEnvío entrante, solo para facturas con precio flexible.
         self.consulta_pre_cobro = None # Nueva ConsultaPreCobro entrante, contiene información completa previa al cobro.
