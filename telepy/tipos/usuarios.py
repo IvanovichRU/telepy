@@ -3,10 +3,10 @@ class Usuario:
     def __init__(self, objeto: dict):
         self.id = 0 # El identificador único para este usuario o bot.
         self.es_bot = False # Es True si el usuario es un bot.
-        self.primer_nombre = '' # El primer nombre del usuario.
-        self.apellido = '' # Apellido de 
-        self.usuario = '' # El nombre de usuario del usuario.
-        self.idioma = '' # Código de lenguaje IETF asignado.
+        self.primer_nombre = 'Sin registrar' # El primer nombre del usuario.
+        self.apellido = 'Sin registrar' # Apellido de 
+        self.usuario = 'Sin registrar' # El nombre de usuario del usuario.
+        self.idioma = 'Sin registrar' # Código de lenguaje IETF asignado.
 
 class Bot(Usuario):
     """Un usuario bot, hijo de Usuario."""

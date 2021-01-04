@@ -1,17 +1,17 @@
 class BotónTecladoEnlínea:
     def __init__(self):
-        self.texto = ''
-        self.url = ''
+        self.texto = 'Sin registrar'
+        self.url = 'Sin registrar'
         self.login_url = None
-        self.datos_rellamada = ''
-        self.cambiar_consulta_enlínea = ''
-        self.cambiar_consulta_enlínea_chat_actual = ''
+        self.datos_rellamada = 'Sin registrar'
+        self.cambiar_consulta_enlínea = 'Sin registrar'
+        self.cambiar_consulta_enlínea_chat_actual = 'Sin registrar'
         self.juego_rellamada = None
         self.pago = False
 
 class BotónTeclado:
     def __init__(self):
-        self.texto = ''
+        self.texto = 'Sin registrar'
         self.pedir_contacto = False
         self.pedir_ubicación = False
         self.pedir_encuesta = False
@@ -34,4 +34,4 @@ class TecladoEnlíneaMarkup:
 
 class TipoEncuestaBotónTeclado:
     def __init__(self):
-        self.tipo = ''
+        self.tipo = 'Sin registrar'

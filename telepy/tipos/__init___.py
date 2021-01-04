@@ -7,3 +7,5 @@ from teclados import *
 from tipos_variedad import *
 from usuarios import *
 from utilería_mensajes import *
+from entradas import *
+from utilería_chats import *

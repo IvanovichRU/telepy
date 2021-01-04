@@ -13,7 +13,7 @@ class MensajeTexto(Mensaje):
     """El mensaje más común que contiene solo texto y quizá algunas Entidades."""
     def __init__(self, objeto: dict):
         super().__init__(objeto)
-        self.texto = '' # El texto UTF-8 del mensaje de 0 hasta 4096 caractéres.
+        self.texto = 'Sin registrar' # El texto UTF-8 del mensaje de 0 hasta 4096 caractéres.
         self.entidades = [] # Entidades especiales en el texto como usuarios, URLs, comandos, etc.
 
 class MensajeReenviado(Mensaje):
@@ -21,13 +21,13 @@ class MensajeReenviado(Mensaje):
 
     def __init__(self, objeto: dict):
         super().__init__()
-        self.texto = '' # El texto del mensaje en UTF-8 como aparece en Telegram.
+        self.texto = 'Sin registrar' # El texto del mensaje en UTF-8 como aparece en Telegram.
         self.entidades = [] # Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
         self.reenviado_remitente = None # El usuario que envió el mensaje original.
         self.reenviado_de_chat = None # La información de mensaje si es reenviado de un canal.
         self.reenviado_id = 0 # El identificador único del mensaje original si es reenviado de un canal.
-        self.reenviado_firma = '' # La firma del autor de la publicación si es reenviado de un canal.
-        self.reenviado_nombre = '' # El nombre del remitente en caso de que no comparta su perfil completo.
+        self.reenviado_firma = 'Sin registrar' # La firma del autor de la publicación si es reenviado de un canal.
+        self.reenviado_nombre = 'Sin registrar' # El nombre del remitente en caso de que no comparta su perfil completo.
         self.reenviado_fecha = 0 # La fecha en la que se envió el mensaje original en tiempo UNIX.
 
 class MensajeBot(Mensaje):
@@ -36,7 +36,7 @@ class MensajeBot(Mensaje):
     def __init__(self, objeto: dict):
         super().__init__()
         self.via_bot = None # El bot mediante el cual se envió el mensaje.
-        self.texto = '' # El texto del mensaje en UTF-8 como aparece en Telegram.
+        self.texto = 'Sin registrar' # El texto del mensaje en UTF-8 como aparece en Telegram.
         self.entidades = [] # Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
 
 class MensajeMultimedia(Mensaje):
@@ -52,7 +52,7 @@ class MensajeMultimedia(Mensaje):
         self.vídeo = None # El mensaje contiene un Vídeo que se almacena en esta propiedad.
         self.vídeo_nota = None # El mensaje contiene una VídeoNota que se almacena en esta propiedad.
         self.nota_voz = None # El mensaje contiene una NotaVoz que se almacena en esta propiedad.
-        self.leyenda = '' # La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
+        self.leyenda = 'Sin registrar' # La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
         self.entidades = [] # La lista de entidades en la leyenda, tales como usuarios, URLs, comandos, etc.
 
 class MensajeCambios(Mensaje):
@@ -62,7 +62,7 @@ class MensajeCambios(Mensaje):
         super().__init__()
         self.nuevos_miembros = [] # La lista de miembros nuevos que fueron agregados al Chat o SuperGrupo
         self.miembro_eliminado = None # El miembro que fue removido en este mensaje.
-        self.nuevo_título = '' # El nuevo título del Chat que se cambió en este mensaje.
+        self.nuevo_título = 'Sin registrar' # El nuevo título del Chat que se cambió en este mensaje.
         self.nueva_foto = [] # La nueva foto del Chat que se cambió en este mensaje.
         self.id_chat_supergrupo = 0 # El identificador único del SuperGrupo en el cual este Grupo se convirtió.
         self.id_supergrupo_chat = 0 # El identificador único del Grupo en el cual este SuperGrupo se convirtió.
