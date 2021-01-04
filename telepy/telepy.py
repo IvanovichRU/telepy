@@ -117,9 +117,9 @@ class Bot_TelePy:
 
 
 
-async def principal():
-    cliente = Bot_TelePy('token')
-    await cliente.iniciar()
+# async def principal():
+    # cliente = Bot_TelePy('token')
+    # await cliente.iniciar()
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(principal())
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(principal())

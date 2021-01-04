@@ -54,7 +54,7 @@ class TamañoFoto:
         self.alto = 0 # Alto de la foto.
         self.tamaño_archivo = 0 # Tamaño del archivo.
 
-class VideoNota:
+class VídeoNota:
     def __init__(self):
         self.id_archivo = 'Sin registrar' # Identificador para este archivo, usado para descargar o reutilizarlo.
         self.id_única_archivo = 'Sin registrar' # Identificador único para este archivo, para largo plazo.

@@ -1,6 +1,6 @@
 class Sticker:
     def __init__(self):
-        self.id_archivo = '' # Identificador para este archivo, usado para descargar o reutilizarlo.
+        self.id_archivo = 'Sin registrar' # Identificador para este archivo, usado para descargar o reutilizarlo.
         self.id_única_archivo = 'Sin registrar' # Identificador único para este archivo, para largo plazo.
         self.ancho = 0 # El ancho del sticker.
         self.alto = 0 # El alto del sticker.
