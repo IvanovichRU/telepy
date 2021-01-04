@@ -25,7 +25,7 @@ import json
 import conversiones
 
 
-class Bot_TelePy:
+class Cliente:
 
     URL_INICIAL = 'https://api.telegram.org/bot' # Este URL es utilizado universalmente para cualquier bot que no use WebHooks
     token_bot: str # Aquí se guarda el token privado para comunicarse con un bot.
@@ -107,19 +107,19 @@ class Bot_TelePy:
         if mensaje_leido == '/omae' or mensaje_leido == '/omae@mi-bot':
             await self.__enviar_mensaje('chat_id', '🎲')
 
-    async def bot_info(self) -> None:
+    async def info_bot(self) -> None:
         info_js =  await self.__obtener_yo()
         for key, value in info_js['result'].items():
             print(key, ':', value)
 
     async def iniciar(self):
-        primer_actualización = await self.__obtener_actualizaciones()
+        # Aún debo implementar esta y muchas funciones más.
+        pass
 
 
 
-# async def principal():
-    # cliente = Bot_TelePy('token')
-    # await cliente.iniciar()
+async def principal():
+    cliente = Cliente('token')
 
-# loop = asyncio.get_event_loop()
-# loop.run_until_complete(principal())
+loop = asyncio.get_event_loop()
+loop.run_until_complete(principal())

@@ -1,7 +1,20 @@
-import tipos
+from tipos.actualización import *
+from tipos.chats import *
+from tipos.entradas import *
+from tipos.infowebhook import *
+from tipos.juegos import *
+from tipos.mensajes import *
+from tipos.multimedia import *
+from tipos.pagos import *
+from tipos.stickers import *
+from tipos.teclados import *
+from tipos.tipos_variedad import *
+from tipos.usuarios import *
+from tipos.utilería_chats import *
+from tipos.utilería_mensajes import *
 
-def desempacar_actualización(actualización: dict) -> tipos.Actualización:
-    nueva_actualización = tipos.Actualización()
+def desempacar_actualización(actualización: dict) -> Actualización():
+    nueva_actualización = Actualización()
     nueva_actualización.id = actualización['update_id']
     if 'message' in actualización:
         nueva_actualización.mensaje = desempacar_mensaje(actualización['message'])
@@ -16,7 +29,7 @@ def desempacar_actualización(actualización: dict) -> tipos.Actualización:
     if 'chosen_inline_result' in actualización:
         nueva_actualización.resultado_enlínea = 0
 
-def desempacar_mensaje(mensaje: dict) -> tipos.Mensaje:
+def desempacar_mensaje(mensaje: dict) -> Mensaje:
     if 'forward_from' in mensaje:
         return desempacar_mensajereenviado(mensaje)
     elif 'via_bot' in mensaje:
@@ -49,8 +62,8 @@ def desempacar_mensaje(mensaje: dict) -> tipos.Mensaje:
           'successful_payment' in mensaje):
         return desempacar_mensajevariado(mensaje)
     
-def desempacar_mensajereenviado(mensaje: dict) -> tipos.MensajeReenviado:
-    nuevo_mensaje = tipos.MensajeReenviado()
+def desempacar_mensajereenviado(mensaje: dict) -> MensajeReenviado:
+    nuevo_mensaje = MensajeReenviado()
     nuevo_mensaje.id = mensaje['message_id']
     nuevo_mensaje.fecha = mensaje['date']
     nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
@@ -73,8 +86,8 @@ def desempacar_mensajereenviado(mensaje: dict) -> tipos.MensajeReenviado:
     nuevo_mensaje.reenviado_fecha = mensaje['forward_date']
     return nuevo_mensaje
 
-def desempacar_mensajebot(mensaje: dict) -> tipos.MensajeBot:
-    nuevo_mensaje = tipos.MensajeBot()
+def desempacar_mensajebot(mensaje: dict) -> MensajeBot:
+    nuevo_mensaje = MensajeBot()
     nuevo_mensaje.via_bot = mensaje['via_bot']
     if 'text' in mensaje:
         nuevo_mensaje.texto = mensaje['text']
@@ -85,8 +98,8 @@ def desempacar_mensajebot(mensaje: dict) -> tipos.MensajeBot:
             nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
     return nuevo_mensaje
         
-def desempacar_mensajemultimedia(mensaje: dict) -> tipos.MensajeMultimedia:
-    nuevo_mensaje = tipos.MensajeMultimedia()
+def desempacar_mensajemultimedia(mensaje: dict) -> MensajeMultimedia:
+    nuevo_mensaje = MensajeMultimedia()
     if 'animation' in mensaje:
         nuevo_mensaje.animación = desempacar_animación(mensaje['animation'])
     if 'audio' in mensaje:
@@ -110,8 +123,8 @@ def desempacar_mensajemultimedia(mensaje: dict) -> tipos.MensajeMultimedia:
             nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
     return nuevo_mensaje
 
-def desempacar_mensajecambios(mensaje: dict) -> tipos.MensajeCambios:
-    nuevo_mensaje = tipos.MensajeCambios()
+def desempacar_mensajecambios(mensaje: dict) -> MensajeCambios:
+    nuevo_mensaje = MensajeCambios()
     if 'new_chat_members' in mensaje:
         for usuario in mensaje['new_chat_members']:
             nuevo_mensaje.nuevos_miembros.append(desempacar_usuario(usuario))
@@ -130,8 +143,8 @@ def desempacar_mensajecambios(mensaje: dict) -> tipos.MensajeCambios:
         nuevo_mensaje.mensaje_anclado = desempacar_mensaje(mensaje['pinned_message'])
     return nuevo_mensaje
 
-def desempacar_mensajevariado(mensaje: dict) -> tipos.MensajeVariado:
-    nuevo_mensaje = tipos.MensajeVariado()
+def desempacar_mensajevariado(mensaje: dict) -> MensajeVariado:
+    nuevo_mensaje = MensajeVariado()
     if 'contact' in mensaje:
         nuevo_mensaje.contacto = desempacar_contacto(mensaje['contact'])
     if 'dice' in mensaje:
@@ -150,12 +163,12 @@ def desempacar_mensajevariado(mensaje: dict) -> tipos.MensajeVariado:
         nuevo_mensaje.pago_exitoso = desempacar_pagoexitoso(mensaje['successful_payment'])
     return nuevo_mensaje
 
-def desempacar_usuario(usuario: dict) -> tipos.Usuario:
+def desempacar_usuario(usuario: dict) -> Usuario:
     nuevo_usuario = None
     if usuario['is_bot']:
         return desempacar_bot(usuario)
     else:
-        nuevo_usuario = tipos.Usuario()
+        nuevo_usuario = Usuario()
         nuevo_usuario.id = usuario['id']
         nuevo_usuario.es_bot = usuario['is_bot']
         nuevo_usuario.primer_nombre = usuario['first_name']
@@ -167,8 +180,8 @@ def desempacar_usuario(usuario: dict) -> tipos.Usuario:
             nuevo_usuario.idioma = usuario['language_code']
         return nuevo_usuario
 
-def desempacar_bot(usuario: dict) -> tipos.Bot:
-    nuevo_usuario = tipos.Bot()
+def desempacar_bot(usuario: dict) -> Bot:
+    nuevo_usuario = Bot()
     nuevo_usuario.id = usuario['id']
     nuevo_usuario.es_bot = usuario['is_bot']
     nuevo_usuario.primer_nombre = usuario['first_name']
@@ -200,8 +213,8 @@ def desempacar_chat(chat: dict):
     if chat['type'] == 'channel':
         return desempacar_canal(chat)
 
-def desempacar_chatprivado(chat: dict) -> tipos.ChatPrivado:
-    nuevo_chat = tipos.ChatPrivado()
+def desempacar_chatprivado(chat: dict) -> ChatPrivado:
+    nuevo_chat = ChatPrivado()
     nuevo_chat.id = chat['id']
     nuevo_chat.tipo = chat['type']
     if 'photo' in chat:
@@ -218,8 +231,8 @@ def desempacar_chatprivado(chat: dict) -> tipos.ChatPrivado:
         nuevo_chat.bio = chat['bio']
     return nuevo_chat
 
-def desempacar_grupo(chat: dict) -> tipos.Grupo:
-    nuevo_chat = tipos.Grupo()
+def desempacar_grupo(chat: dict) -> Grupo:
+    nuevo_chat = Grupo()
     nuevo_chat.id = chat['id']
     nuevo_chat.tipo = chat['type']
     if 'photo' in chat:
@@ -238,8 +251,8 @@ def desempacar_grupo(chat: dict) -> tipos.Grupo:
         nuevo_chat.permisos = desempacar_permisoschat(chat['permissions'])
     return nuevo_chat
 
-def desempacar_supergrupo(chat: dict) -> tipos.SuperGrupo:
-    nuevo_chat = tipos.SuperGrupo()
+def desempacar_supergrupo(chat: dict) -> SuperGrupo:
+    nuevo_chat = SuperGrupo()
     nuevo_chat.id = chat['id']
     nuevo_chat.tipo = chat['type']
     if 'photo' in chat:
@@ -262,8 +275,8 @@ def desempacar_supergrupo(chat: dict) -> tipos.SuperGrupo:
         nuevo_chat.nombre_set_stickers = chat['sticker_set_name']
     return nuevo_chat
 
-def desempacar_canal(chat: dict) -> tipos.Canal:
-    nuevo_chat = tipos.SuperGrupo()
+def desempacar_canal(chat: dict) -> Canal:
+    nuevo_chat = SuperGrupo()
     nuevo_chat.id = chat['id']
     nuevo_chat.tipo = chat['type']
     if 'photo' in chat:
@@ -280,8 +293,8 @@ def desempacar_canal(chat: dict) -> tipos.Canal:
         nuevo_chat.invitación = chat['invite_link']
     return nuevo_chat
 
-def desempacar_entidad(entidad: dict) -> tipos.EntidadMensaje:
-    nueva_entidad = tipos.EntidadMensaje
+def desempacar_entidad(entidad: dict) -> EntidadMensaje:
+    nueva_entidad = EntidadMensaje
     nueva_entidad.tipo = entidad['type']
     nueva_entidad.desplazo = entidad['offset']
     nueva_entidad.longitud = entidad['length']
@@ -293,8 +306,8 @@ def desempacar_entidad(entidad: dict) -> tipos.EntidadMensaje:
         nueva_entidad.lenguaje = entidad['language']
     return nueva_entidad
 
-def desempacar_animación(animación: dict) -> tipos.Animación:
-    nueva_animación = tipos.Animación()
+def desempacar_animación(animación: dict) -> Animación:
+    nueva_animación = Animación()
     nueva_animación.id_archivo = animación['file_id']
     nueva_animación.id_única_archivo = animación['file_unique_id']
     nueva_animación.ancho = animación['width']
@@ -310,8 +323,8 @@ def desempacar_animación(animación: dict) -> tipos.Animación:
         nueva_animación.tamaño_archivo = animación['file_size']
     return nueva_animación
 
-def desempacar_audio(audio: dict) -> tipos.Audio:
-    nuevo_audio = tipos.Audio()
+def desempacar_audio(audio: dict) -> Audio:
+    nuevo_audio = Audio()
     nuevo_audio.id_archivo = audio['file_id']
     nuevo_audio.id_única_archivo = audio['file_unique_id']
     nuevo_audio.duración = audio['duration']
@@ -329,8 +342,8 @@ def desempacar_audio(audio: dict) -> tipos.Audio:
         nuevo_audio.miniatura = desempacar_tamañofoto(audio['thumb'])
     return nuevo_audio
 
-def desempacar_documento(documento: dict) -> tipos.Documento:
-    nuevo_documento = tipos.Documento()
+def desempacar_documento(documento: dict) -> Documento:
+    nuevo_documento = Documento()
     nuevo_documento.id_archivo = documento['file_id']
     nuevo_documento.id_única_archivo = documento['file_unique_id']
     if 'thumb' in documento:
@@ -343,8 +356,8 @@ def desempacar_documento(documento: dict) -> tipos.Documento:
         nuevo_documento.tamaño_archivo = documento['file_size']
     return nuevo_documento
 
-def desempacar_tamañofoto(tamañofoto: dict) -> tipos.TamañoFoto:
-    nuevo_tamañofoto = tipos.TamañoFoto
+def desempacar_tamañofoto(tamañofoto: dict) -> TamañoFoto:
+    nuevo_tamañofoto = TamañoFoto
     nuevo_tamañofoto.id_archivo = tamañofoto['file_id']
     nuevo_tamañofoto.id_única_archivo = tamañofoto['file_unique_id']
     nuevo_tamañofoto.ancho = tamañofoto['width']
@@ -353,8 +366,8 @@ def desempacar_tamañofoto(tamañofoto: dict) -> tipos.TamañoFoto:
         nuevo_tamañofoto.tamaño_archivo = tamañofoto['file_size']
     return nuevo_tamañofoto
 
-def desempacar_sticker(sticker: dict) -> tipos.Sticker:
-    nuevo_sticker = tipos.Sticker()
+def desempacar_sticker(sticker: dict) -> Sticker:
+    nuevo_sticker = Sticker()
     nuevo_sticker.id_archivo = sticker['file_id']
     nuevo_sticker.id_única_archivo = sticker['file_unique_id']
     nuevo_sticker.ancho = sticker['width']
@@ -372,8 +385,8 @@ def desempacar_sticker(sticker: dict) -> tipos.Sticker:
         nuevo_sticker.tamaño_archivo = sticker['file_size']
     return nuevo_sticker
 
-def desempacar_vídeo(vídeo: dict) -> tipos.Vídeo:
-    nuevo_vídeo = tipos.Vídeo()
+def desempacar_vídeo(vídeo: dict) -> Vídeo:
+    nuevo_vídeo = Vídeo()
     nuevo_vídeo.id_archivo = vídeo['file_id']
     nuevo_vídeo.id_única_archivo = vídeo['file_unique_id']
     nuevo_vídeo.ancho = vídeo['width']
@@ -389,8 +402,8 @@ def desempacar_vídeo(vídeo: dict) -> tipos.Vídeo:
         nuevo_vídeo.tamaño_archivo = vídeo['file_size']
     return nuevo_vídeo
 
-def desempacar_vídeonota(vídeo_nota: dict) -> tipos.VídeoNota:
-    nueva_vídeonota = tipos.VídeoNota()
+def desempacar_vídeonota(vídeo_nota: dict) -> VídeoNota:
+    nueva_vídeonota = VídeoNota()
     nueva_vídeonota.id_archivo = vídeo_nota['file_id']
     nueva_vídeonota.id_única_archivo = vídeo_nota['file_unique_id']
     nueva_vídeonota.longitud = vídeo_nota['length']
@@ -401,8 +414,8 @@ def desempacar_vídeonota(vídeo_nota: dict) -> tipos.VídeoNota:
         nueva_vídeonota.tamaño_archivo = vídeo_nota['file_size']
     return nueva_vídeonota
 
-def desempacar_notavoz(notavoz: dict) -> tipos.NotaVoz:
-    nueva_notavoz = tipos.NotaVoz()
+def desempacar_notavoz(notavoz: dict) -> NotaVoz:
+    nueva_notavoz = NotaVoz()
     nueva_notavoz.id_archivo = notavoz['file_id']
     nueva_notavoz.id_única_archivo = notavoz['file_unique_id']
     nueva_notavoz.duración = notavoz['duration']
@@ -412,8 +425,8 @@ def desempacar_notavoz(notavoz: dict) -> tipos.NotaVoz:
         nueva_notavoz.tamaño_archivo = notavoz['file_size']
     return nueva_notavoz
 
-def desempacar_contacto(contacto: dict) -> tipos.Contacto:
-    nuevo_contacto = tipos.Contacto()
+def desempacar_contacto(contacto: dict) -> Contacto:
+    nuevo_contacto = Contacto()
     nuevo_contacto.número = contacto['phone_number']
     nuevo_contacto.primer_nombre = contacto['first_name']
     if 'last_name' in contacto:
@@ -423,14 +436,14 @@ def desempacar_contacto(contacto: dict) -> tipos.Contacto:
     if 'vcard' in contacto:
         nuevo_contacto.tarjeta_v = contacto['vcard']
 
-def desempacar_dado(dado: dict) -> tipos.Dado:
-    nuevo_dado = tipos.Dado()
+def desempacar_dado(dado: dict) -> Dado:
+    nuevo_dado = Dado()
     nuevo_dado.emoji = dado['emoji']
     nuevo_dado.valor = dado['value']
     return nuevo_dado
 
-def desempacar_juego(juego: dict) -> tipos.Juego:
-    nuevo_juego = tipos.Juego()
+def desempacar_juego(juego: dict) -> Juego:
+    nuevo_juego = Juego()
     nuevo_juego.título = juego['title']
     nuevo_juego.descripción = juego['description']
     nuevo_juego.foto = desempacar_tamañofoto(juego['photo'])
@@ -443,8 +456,8 @@ def desempacar_juego(juego: dict) -> tipos.Juego:
         nuevo_juego.animación = desempacar_animación(juego['animation'])
     return nuevo_juego
 
-def desempacar_encuesta(encuesta: dict) -> tipos.Encuesta:
-    nueva_encuesta = tipos.Encuesta()
+def desempacar_encuesta(encuesta: dict) -> Encuesta:
+    nueva_encuesta = Encuesta()
     nueva_encuesta.id = encuesta['id']
     nueva_encuesta.pregunta = encuesta['question']
     for opción in encuesta['options']:
@@ -467,8 +480,8 @@ def desempacar_encuesta(encuesta: dict) -> tipos.Encuesta:
         nueva_encuesta.fecha_cerrada = encuesta['close_date']
     return nueva_encuesta
 
-def desempacar_establecimiento(establecimiento: dict) -> tipos.Establecimiento:
-    nuevo_establecimiento = tipos.Establecimiento()
+def desempacar_establecimiento(establecimiento: dict) -> Establecimiento:
+    nuevo_establecimiento = Establecimiento()
     nuevo_establecimiento.ubicación = desempacar_ubicación(establecimiento['location'])
     nuevo_establecimiento.título = establecimiento['title']
     nuevo_establecimiento.dirección = establecimiento['address']
@@ -482,8 +495,8 @@ def desempacar_establecimiento(establecimiento: dict) -> tipos.Establecimiento:
         nuevo_establecimiento.tipo_google_place = establecimiento['google_place_type']
     return nuevo_establecimiento
 
-def desempacar_ubicación(ubicación: dict) -> tipos.Ubicación:
-    nueva_ubicación = tipos.Ubicación()
+def desempacar_ubicación(ubicación: dict) -> Ubicación:
+    nueva_ubicación = Ubicación()
     nueva_ubicación.longitud = ubicación['longitude']
     nueva_ubicación.latitud = ubicación['latitude']
     if 'horizontal_accuracy' in ubicación:
@@ -496,8 +509,8 @@ def desempacar_ubicación(ubicación: dict) -> tipos.Ubicación:
         nueva_ubicación.radio_alerta_proximidad = ubicación['proximity_alert_radius']
     return nueva_ubicación
 
-def desempacar_factura(factura: dict) -> tipos.Factura:
-    nueva_factura = tipos.Factura()
+def desempacar_factura(factura: dict) -> Factura:
+    nueva_factura = Factura()
     nueva_factura.título = factura['title']
     nueva_factura.descripción = factura['description']
     nueva_factura.parámetro_inicio = factura['start_parameter']
@@ -505,8 +518,8 @@ def desempacar_factura(factura: dict) -> tipos.Factura:
     nueva_factura.monto_total = factura['total_amount']
     return nueva_factura
 
-def desempacar_pagoexitoso(pago: dict) -> tipos.PagoExitoso:
-    nuevo_pagoexitoso = tipos.PagoExitoso()
+def desempacar_pagoexitoso(pago: dict) -> PagoExitoso:
+    nuevo_pagoexitoso = PagoExitoso()
     nuevo_pagoexitoso.moneda = pago['currency']
     nuevo_pagoexitoso.monto_total = pago['total_amount']
     nuevo_pagoexitoso.carga_factura = pago['invoice_payload']
@@ -518,16 +531,16 @@ def desempacar_pagoexitoso(pago: dict) -> tipos.PagoExitoso:
     nuevo_pagoexitoso.id_proveedor_cargo_pago = pago['provider_payment_charge_id']
     return nuevo_pagoexitoso
 
-def desempacar_fotochat(fotochat: dict) -> tipos.FotoChat:
-    nueva_fotochat = tipos.FotoChat()
+def desempacar_fotochat(fotochat: dict) -> FotoChat:
+    nueva_fotochat = FotoChat()
     nueva_fotochat.id_foto_pequeña = fotochat['small_file_id']
     nueva_fotochat.id_único_foto_pequeña = fotochat['small_file_unique_id']
     nueva_fotochat.id_foto_grande = fotochat['big_file_id']
     nueva_fotochat.id_único_foto_grande = fotochat['big_file_unique_id']
     return nueva_fotochat
 
-def desempacar_permisoschat(permisos: dict) -> tipos.PermisosChat:
-    nuevos_permisos = tipos.PermisosChat()
+def desempacar_permisoschat(permisos: dict) -> PermisosChat:
+    nuevos_permisos = PermisosChat()
     if 'can_send_messages' in permisos:
         nuevos_permisos.puede_enviar = permisos['can_send_messages']
     if 'can_send_messages' in permisos:
@@ -546,13 +559,13 @@ def desempacar_permisoschat(permisos: dict) -> tipos.PermisosChat:
         nuevos_permisos.puede_anclar = permisos['can_pin_messages']
     return nuevos_permisos
 
-def desempacar_opciónencuesta(opción: dict) -> tipos.OpciónEncuesta:
-    nueva_opción = tipos.OpciónEncuesta()
+def desempacar_opciónencuesta(opción: dict) -> OpciónEncuesta:
+    nueva_opción = OpciónEncuesta()
     nueva_opción.texto = opción['text']
     nueva_opción.cuenta_de_voto = opción['voter_count']
 
-def desempacar_infoorden(info: dict) -> tipos.InfoOrden:
-    nueva_info = tipos.InfoOrden()
+def desempacar_infoorden(info: dict) -> InfoOrden:
+    nueva_info = InfoOrden()
     if 'name' in info:
         nueva_info.nombre = info['name']
     if 'phone_number' in info:
