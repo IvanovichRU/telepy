@@ -1,7 +1,5 @@
 class Actualización:
-    """Representa una actualización entrante que el bot leyó.
-    Contiene toda la información necesaria para procesar algún
-    mensaje o cambio en el estado del chat correspondiente."""
+
     def __init__(self):
         self.id = 0 # El identificador único de la actualización.
         self.mensaje = None # Nuevo mensaje entrante de cualquier tipo, texto, foto, sticker, etc.
@@ -17,8 +15,8 @@ class Actualización:
         self.respuesta_encueta = None # Un usuario cambió su respuesta en una encuesta no anónima. Los bots solo reciben nuevos votos en encuestas que el mismo envía.
 
     def __str__(self) -> str:
-        cadena = 'Actualización:\n'
+        cadena = type(self).__name__ + ':\n'
         for llave in self.__dict__:
-            if self.__dict__[llave] is not None:
+            if self.__dict__[llave] is not None and self.__dict__[llave] != [] and self.__dict__[llave] != 'Sin registrar':
                 cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
         return cadena

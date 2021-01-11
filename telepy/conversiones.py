@@ -18,7 +18,6 @@ def desempacar_actualización(actualización: dict) -> Actualización:
     nueva_actualización = Actualización()
     nueva_actualización.id = actualización['update_id']
     if 'message' in actualización:
-        print('Hay un mensaje en la act...')
         nueva_actualización.mensaje = desempacar_mensaje(actualización['message'])
     if 'edited_message' in actualización:
         nueva_actualización.mensaje_editado = desempacar_mensaje(actualización['edited_message'])
@@ -68,8 +67,14 @@ def desempacar_mensaje(mensaje: dict) -> Mensaje:
         return desempacar_mensajetexto(mensaje)
 
 def desempacar_mensajetexto(mensaje: dict) -> MensajeTexto:
-    print('Entró a desempacar_mensajetexto')
     nuevo_mensaje = MensajeTexto()
+    nuevo_mensaje.id = mensaje['message_id']
+    nuevo_mensaje.fecha = mensaje['date']
+    if 'from' in mensaje:
+        nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
+    nuevo_mensaje.chat = desempacar_chat(mensaje['chat'])
+    if 'edit_date' in mensaje:
+        nuevo_mensaje.fecha_editado = mensaje['edit_date']
     nuevo_mensaje.texto = mensaje['text']
     if 'entitites' in mensaje:
         for entidad in mensaje['entities']:
@@ -102,7 +107,14 @@ def desempacar_mensajereenviado(mensaje: dict) -> MensajeReenviado:
 
 def desempacar_mensajebot(mensaje: dict) -> MensajeBot:
     nuevo_mensaje = MensajeBot()
-    nuevo_mensaje.via_bot = mensaje['via_bot']
+    nuevo_mensaje.id = mensaje['message_id']
+    nuevo_mensaje.fecha = mensaje['date']
+    if 'from' in mensaje:
+        nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
+    nuevo_mensaje.chat = desempacar_chat(mensaje['chat'])
+    if 'edit_date' in mensaje:
+        nuevo_mensaje.fecha_editado = mensaje['edit_date']
+    nuevo_mensaje.via_bot = desempacar_usuario(mensaje['via_bot'])
     if 'text' in mensaje:
         nuevo_mensaje.texto = mensaje['text']
     else:
@@ -114,6 +126,13 @@ def desempacar_mensajebot(mensaje: dict) -> MensajeBot:
 
 def desempacar_mensajemultimedia(mensaje: dict) -> MensajeMultimedia:
     nuevo_mensaje = MensajeMultimedia()
+    nuevo_mensaje.id = mensaje['message_id']
+    nuevo_mensaje.fecha = mensaje['date']
+    if 'from' in mensaje:
+        nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
+    nuevo_mensaje.chat = desempacar_chat(mensaje['chat'])
+    if 'edit_date' in mensaje:
+        nuevo_mensaje.fecha_editado = mensaje['edit_date']
     if 'animation' in mensaje:
         nuevo_mensaje.animación = desempacar_animación(mensaje['animation'])
     if 'audio' in mensaje:
@@ -143,6 +162,13 @@ def desempacar_mensajemultimedia(mensaje: dict) -> MensajeMultimedia:
 
 def desempacar_mensajecambios(mensaje: dict) -> MensajeCambios:
     nuevo_mensaje = MensajeCambios()
+    nuevo_mensaje.id = mensaje['message_id']
+    nuevo_mensaje.fecha = mensaje['date']
+    if 'from' in mensaje:
+        nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
+    nuevo_mensaje.chat = desempacar_chat(mensaje['chat'])
+    if 'edit_date' in mensaje:
+        nuevo_mensaje.fecha_editado = mensaje['edit_date']
     if 'new_chat_members' in mensaje:
         for usuario in mensaje['new_chat_members']:
             nuevo_mensaje.nuevos_miembros.append(desempacar_usuario(usuario))
@@ -163,6 +189,13 @@ def desempacar_mensajecambios(mensaje: dict) -> MensajeCambios:
 
 def desempacar_mensajevariado(mensaje: dict) -> MensajeVariado:
     nuevo_mensaje = MensajeVariado()
+    nuevo_mensaje.id = mensaje['message_id']
+    nuevo_mensaje.fecha = mensaje['date']
+    if 'from' in mensaje:
+        nuevo_mensaje.remitente = desempacar_usuario(mensaje['from'])
+    nuevo_mensaje.chat = desempacar_chat(mensaje['chat'])
+    if 'edit_date' in mensaje:
+        nuevo_mensaje.fecha_editado = mensaje['edit_date']
     if 'contact' in mensaje:
         nuevo_mensaje.contacto = desempacar_contacto(mensaje['contact'])
     if 'dice' in mensaje:
@@ -190,7 +223,7 @@ def desempacar_usuario(usuario: dict) -> Usuario:
         nuevo_usuario.id = usuario['id']
         nuevo_usuario.es_bot = usuario['is_bot']
         nuevo_usuario.primer_nombre = usuario['first_name']
-        if 'apellido' in usuario:
+        if 'last_name' in usuario:
             nuevo_usuario.apellido = usuario['last_name']
         if 'username' in usuario:
             nuevo_usuario.usuario = usuario['username']

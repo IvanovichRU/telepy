@@ -8,6 +8,12 @@ class Mensaje:
         self.chat = None # El chat al que el mensaje pertenece.
         self.fecha_editado = None # La fecha en la que el mensaje fue editado por última vez en tiempo Unix.
 
+    def __str__(self) -> str:
+        cadena = type(self).__name__ + ':\n'
+        for llave in self.__dict__:
+            if self.__dict__[llave] is not None and self.__dict__[llave] != [] and self.__dict__[llave] != 'Sin registrar':
+                cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
+        return cadena
 
 class MensajeTexto(Mensaje):
     """El mensaje más común que contiene solo texto y quizá algunas Entidades."""

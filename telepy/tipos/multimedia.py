@@ -38,6 +38,13 @@ class FotoChat:
         self.id_foto_grande = 'Sin registrar' # Identificador de la foto grande del chat.
         self.id_único_foto_grande = 'Sin registrar' # Identificador único del archivo de la foto grande del chat.
 
+    def __str__(self) -> str:
+        cadena = type(self).__name__ + ':\n'
+        for llave in self.__dict__:
+            if self.__dict__[llave] is not None and self.__dict__[llave] != []:
+                cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
+        return cadena
+
 class NotaVoz:
     def __init__(self):
         self.id_archivo = 'Sin registrar' # Identificador para este archivo, usado para descargar o reutilizarlo.
@@ -53,6 +60,13 @@ class TamañoFoto:
         self.ancho = 0 # Ancho de la foto.
         self.alto = 0 # Alto de la foto.
         self.tamaño_archivo = 0 # Tamaño del archivo.
+
+    def __str__(self) -> str:
+        cadena = type(self).__name__ + ':\n'
+        for llave in self.__dict__:
+            if self.__dict__[llave] is not None and self.__dict__[llave] != [] and self.__dict__[llave] != 'Sin registrar':
+                cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
+        return cadena        
 
 class VídeoNota:
     def __init__(self):

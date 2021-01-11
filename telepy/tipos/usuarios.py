@@ -8,6 +8,13 @@ class Usuario:
         self.usuario = 'Sin registrar' # El nombre de usuario del usuario.
         self.idioma = 'Sin registrar' # Código de lenguaje IETF asignado.
 
+    def __str__(self) -> str:
+        cadena = type(self).__name__ + ':\n'
+        for llave in self.__dict__:
+            if self.__dict__[llave] is not None and self.__dict__[llave] != [] and self.__dict__[llave] != 'Sin registrar':
+                cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
+        return cadena
+
 class Bot(Usuario):
     """Un usuario bot, hijo de Usuario."""
     def __init__(self):

@@ -7,6 +7,13 @@ class Chat:
         self.mensaje_anclado = None # El mensaje anclado más reciente.
         self.cambia_stickers = False # Es True si el bot puede cambiar el set de stickers.
 
+    def __str__(self) -> str:
+        cadena = type(self).__name__ + ':\n'
+        for llave in self.__dict__:
+            if self.__dict__[llave] is not None and self.__dict__[llave] != [] and self.__dict__[llave] != 'Sin registrar':
+                cadena += str(llave) + ' -> ' + str(self.__dict__[llave]) + '\n'
+        return cadena
+
 class ChatPrivado(Chat):
     """Un chat privado de Telegram, en él solo participan dos usuarios de Telegram."""
     def __init__(self):

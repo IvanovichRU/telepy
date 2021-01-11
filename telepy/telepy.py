@@ -1,5 +1,6 @@
 """
 Creado por Kevin Iván Domínguez Jiménez
+
 MIT License
 Copyright (c) 2020 Kevin Iván Domínguez Jiménez
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,39 +38,21 @@ class Cliente:
         self.id_última_actualización = 0
 
     async def __iniciar_actualizaciones(self):
-        async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=3') as respuesta:
+        async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=10') as respuesta:
             dict_respuesta = json.loads(await respuesta.text())
             for actualización in dict_respuesta['result']:
                 self.actualizaciones.append(conversiones.desempacar_actualización(actualización))
 
+    def __agregar_chat(self, chat_id: str) -> None:
+        if chat_id not in self.chats:
+            self.chats.append(chat_id)
 
-    """
-    Aquí inician las funciones directas del 'Telegram Bot API' proporcionado en: https://core.telegram.org/bots/api
-    no se recomienda utilizar estas funciones directamente, utiliza las funciones más adelante.
-    """
-    # async def __enviar_mensaje(self, chat_id: str, mensaje: str) -> dict:
-    #     """
-    #     Envia, mediante el bot, el mensaje dado.
-    #     """
-    #     async with aiohttp.request('POST', self.url_def + '/sendMessage?chat_id=' + chat_id + '&text=' + mensaje) as respuesta:
-    #         return json.loads(await respuesta.text())
+    def __leer_actualizaciones():
+         pass
 
-    # async def __obtener_actualizaciones(self) -> dict:
-    #     """
-    #     Solo debe utilizarse para inicializar el ciclo del bot.
-    #     """
-    #     async with aiohttp.request('GET', self.url_def + '/getUpdates?timeout=10') as respuesta:
-    #         return json.loads(await respuesta.text())
-
-    # async def __siguiente_actualización(self, update_id: int) -> dict:
-    #     """
-    #     Al llamar esta funcion, el bot lee la actualización con el id proporcionado
-    #     solo recuerda que al hacer esto, las actualizaciones anteriores a esta, son
-    #     eliminadas.
-    #     """
-    #     async with aiohttp.request('GET', self.url_def + '/getUpdates?timeout=2&offset=' + str(update_id)) as respuesta:
-    #         return json.loads(await respuesta.text())
-
+    def procesar_actualización():
+        if 
+            
     async def iniciar(self):
         await self.__iniciar_actualizaciones()
 
