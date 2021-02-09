@@ -76,9 +76,9 @@ def desempacar_mensajetexto(mensaje: dict) -> MensajeTexto:
     if 'edit_date' in mensaje:
         nuevo_mensaje.fecha_editado = mensaje['edit_date']
     nuevo_mensaje.texto = mensaje['text']
-    if 'entitites' in mensaje:
+    if 'entities' in mensaje:
         for entidad in mensaje['entities']:
-            nuevo_mensaje.entidades.append(entidad)
+            nuevo_mensaje.entidades.append(desempacar_entidad(entidad))
     return nuevo_mensaje
 
 def desempacar_mensajereenviado(mensaje: dict) -> MensajeReenviado:

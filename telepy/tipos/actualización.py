@@ -12,7 +12,7 @@ class Actualización:
         self.consulta_envío = None # Nueva ConsultaEnvío entrante, solo para facturas con precio flexible.
         self.consulta_pre_cobro = None # Nueva ConsultaPreCobro entrante, contiene información completa previa al cobro.
         self.encuesta = None # Nuevo estado de Encuesta. Los bots solo reciben información acerca de encuestas detenidas y que él mismo envía.
-        self.respuesta_encueta = None # Un usuario cambió su respuesta en una encuesta no anónima. Los bots solo reciben nuevos votos en encuestas que el mismo envía.
+        self.respuesta_encuesta = None # Un usuario cambió su respuesta en una encuesta no anónima. Los bots solo reciben nuevos votos en encuestas que el mismo envía.
 
     def __str__(self) -> str:
         cadena = type(self).__name__ + ':\n'
