@@ -45,7 +45,7 @@ class Cliente:
         Esta funcion obtiene las actualizaciones acumuladas en el API, las guarda en
         el miembro: `actualizaciones`.
         """
-        async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=10') as respuesta:
+        async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=5') as respuesta:
             dict_respuesta = json.loads(await respuesta.text())
             for actualización in dict_respuesta['result']:
                 self.actualizaciones.append(conversiones.desempacar_actualización(actualización))
@@ -71,6 +71,7 @@ class Cliente:
         Aquí se lee la información dentro de la `Actualización` pasada a esta función,
         de igual manera se clasifica correspondientemente.
         """
+        print("Actualización leída, su id es: " + str(actualización.id))
         if actualización.mensaje.entidades:
 
             # Agregar el chat del cual se recibió el mensaje el bot.
@@ -85,7 +86,9 @@ class Cliente:
         self.chats.append(chat_id)
 
     async def __encender(self):
+        print("Bot iniciado con token " + self.token_bot + "...")
         while True:
+            print("Revisando API ...")
             await self.__obtener_actualizaciones()
             self.__leer_actualizaciones()
             await self.__limpiar_actualizaciones()
@@ -94,8 +97,6 @@ class Cliente:
 
 
 # FUNCIONES PÚBLICAS
-
-
 
     async def enviar(self, chat: str, mensaje: str):
         async with aiohttp.request('GET', self.url_default + '/sendMessage?' + "chat_id=" + chat + "&text=" + mensaje) as respuesta:

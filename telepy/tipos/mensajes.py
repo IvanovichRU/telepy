@@ -7,6 +7,7 @@ class Mensaje:
         self.remitente = None # El usuario que envió el mensaje reenviado, del chat local.
         self.chat = None # El chat al que el mensaje pertenece.
         self.fecha_editado = None # La fecha en la que el mensaje fue editado por última vez en tiempo Unix.
+        self.entidades = [] # Entidades especiales en el texto como usuarios, URLs, comandos, etc.
 
     def __str__(self) -> str:
         cadena = type(self).__name__ + ':\n'
@@ -20,7 +21,6 @@ class MensajeTexto(Mensaje):
     def __init__(self):
         super().__init__()
         self.texto = 'Sin registrar' # El texto UTF-8 del mensaje de 0 hasta 4096 caractéres.
-        self.entidades = [] # Entidades especiales en el texto como usuarios, URLs, comandos, etc.
 
 class MensajeReenviado(Mensaje):
     """Un mensaje reenviado de algún lugar."""
@@ -28,7 +28,6 @@ class MensajeReenviado(Mensaje):
     def __init__(self):
         super().__init__()
         self.texto = 'Sin registrar' # El texto del mensaje en UTF-8 como aparece en Telegram.
-        self.entidades = [] # Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
         self.reenviado_remitente = None # El usuario que envió el mensaje original.
         self.reenviado_de_chat = None # La información de mensaje si es reenviado de un canal.
         self.reenviado_id = 0 # El identificador único del mensaje original si es reenviado de un canal.
@@ -43,7 +42,6 @@ class MensajeBot(Mensaje):
         super().__init__()
         self.via_bot = None # El bot mediante el cual se envió el mensaje.
         self.texto = 'Sin registrar' # El texto del mensaje en UTF-8 como aparece en Telegram.
-        self.entidades = [] # Una lista de entidades en el mensaje, tales como usuarios, URLs, comandos, etc.
 
 class MensajeMultimedia(Mensaje):
     """Un mensaje con contenido multimedia."""
@@ -59,8 +57,6 @@ class MensajeMultimedia(Mensaje):
         self.vídeo_nota = None # El mensaje contiene una VídeoNota que se almacena en esta propiedad.
         self.nota_voz = None # El mensaje contiene una NotaVoz que se almacena en esta propiedad.
         self.leyenda = 'Sin registrar' # La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
-        self.entidades = [] # La lista de entidades en la leyenda, tales como usuarios, URLs, comandos, etc.
-        self.entidades_leyenda = []
 
 class MensajeCambios(Mensaje):
     """Un mensaje que registra un cambio en el Chat donde se recibió este mensaje."""
