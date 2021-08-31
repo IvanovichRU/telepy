@@ -34,8 +34,6 @@ release = '12/2020'
 extensions = [
     'sphinx_rtd_theme'
 ]
-highlight_language = 'python3'
-pygments_style = 'material'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
