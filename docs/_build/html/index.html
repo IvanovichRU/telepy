@@ -160,7 +160,24 @@
   <div class="section" id="bienvenido-a-telepy">
 <h1>¡Bienvenido a telepy!<a class="headerlink" href="#bienvenido-a-telepy" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>telepy es una librería creada con la intención de facilitar el desarrollo de bots para la
-plataforma proporcionada por Telegram.</p>
+plataforma proporcionada por <a class="reference external" href="https://es.wikipedia.org/wiki/Telegram">Telegram</a>. Se pueden generar
+comandos para el bot en muy pocas líneas de código y es posible desarrollar un bot complejo sin mayor
+esfuerzo.</p>
+<div class="section" id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl>
+<dt>..code-block:: python</dt><dd><dl class="field-list simple">
+<dt class="field-odd">linenos</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>from telepy import *</p>
+<p>mi_cliente = Cliente(«TOKEN DE TELEGRAM BOT»)</p>
+<p>async def hola(cliente, actualización):
+await cliente.enviar(str(actualización.mensaje.chat.id), «Hola compañere.»)</p>
+<p>cliente.agregar_comando(hola)</p>
+<p>cliente.iniciar()</p>
+</dd>
+</dl>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tipos.html">Tipos</a><ul>
@@ -172,6 +189,7 @@ plataforma proporcionada por Telegram.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="acerca-de-mi.html">Acerca de mí</a></li>
 </ul>
+</div>
 </div>
 </div>
 
