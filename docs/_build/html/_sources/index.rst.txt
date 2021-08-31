@@ -10,15 +10,14 @@ esfuerzo.
 Ejemplo
 ==========
 .. code-block:: python3
-   :linenos:
 
    from telepy import *
 
    mi_cliente = Cliente("TOKEN DE TELEGRAM BOT")
 
    async def hola(cliente, actualización):
-      await cliente.enviar(str(actualización.mensaje.chat.id), "Hola compañere.")
-      
+      await cliente.enviar(str(actualización.mensaje.chat.id), "Hola, humano.")
+
    cliente.agregar_comando(hola)
    cliente.iniciar()
 
