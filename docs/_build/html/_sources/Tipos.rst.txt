@@ -11,10 +11,12 @@ Usuarios
 ========
 | A continuación están todos los tipos de usuario disponibles en telepy.
 
+
 .. _usuario-tp:
 
 Usuario
 ----------
+
 | Representa un usuario de Telegram, es posible que sea un bot o un usuario real.
 | Este tipo es el padre de los dos tipos de usuario, los cuales son :ref:`persona-tp` y :ref:`bot-tp`.
 | Contiene las propiedades mínimas que todos los usuarios deben tener.

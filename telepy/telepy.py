@@ -74,6 +74,7 @@ class Cliente:
         print("Actualización leída, su id es: " + str(actualización.id))
 
         if actualización.mensaje.entidades:
+            actualización.usuario = actualización.mensaje.remitente.usuario
             for entidad in actualización.mensaje.entidades:
                 if entidad.tipo == 'bot_command':
                     comando = actualización.mensaje.texto[entidad.desplazo:entidad.desplazo+entidad.longitud]
