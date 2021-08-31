@@ -19,7 +19,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'telepy'
-copyright = '2020, Kevin Ivan Dominguez Jimenez'
+copyright = '2021, Kevin Ivan Dominguez Jimenez'
 author = 'Kevin Ivan Dominguez Jimenez'
 
 # The full version, including alpha/beta/rc tags
@@ -51,7 +51,8 @@ language = 'es'
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-pygments_style = 'material'
+highlight_language = 'python3'
+pygments_style = 'rainbow_dash'
 
 # -- Options for HTML output -------------------------------------------------
 
