@@ -45,7 +45,7 @@ class Cliente:
         Esta funcion obtiene las actualizaciones acumuladas en el API, las guarda en
         el miembro: `actualizaciones`.
         """
-        async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=5') as respuesta:
+        async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=1') as respuesta:
             dict_respuesta = json.loads(await respuesta.text())
             for actualización in dict_respuesta['result']:
                 self.actualizaciones.append(conversiones.desempacar_actualización(actualización))
@@ -54,43 +54,41 @@ class Cliente:
         async with aiohttp.request('GET', self.url_default + '/getUpdates?timeout=5&offset=' + str(self.id_siguiente_actualización)) as respuesta:
             dict_respuesta = json.loads(await respuesta.text())
 
-    def __leer_actualizaciones(self):
+    async def __leer_actualizaciones(self):
         """
         Esta función lee cada una de los objetos `Actualización` guardadas en `actualizaciones` 
         para procesar lo que haya dentro de ellas mediante la función `__procesar_actualización`.
         Al mismo tiempo, deja la lista de actualizaciones vacia y prepara la variable `id_siguiente_actualización`
         para vaciar el API.
         """
-        for index in range(len(self.actualizaciones)):
-            self.__procesar_actualización(self.actualizaciones[0])
+        for i in range(len(self.actualizaciones)):
+            await self.__procesar_actualización(self.actualizaciones[0])
             self.id_siguiente_actualización = self.actualizaciones[0].id + 1
             self.actualizaciones.pop(0)
 
-    def __procesar_actualización(self, actualización):
+    async def __procesar_actualización(self, actualización):
         """
         Aquí se lee la información dentro de la `Actualización` pasada a esta función,
         de igual manera se clasifica correspondientemente.
         """
         print("Actualización leída, su id es: " + str(actualización.id))
+
         if actualización.mensaje.entidades:
-
-            # Agregar el chat del cual se recibió el mensaje el bot.
-            if str(actualización.mensaje.chat.id) not in self.chats:
-                self.__agregar_chat(str(actualización.mensaje.chat.id))
-
             for entidad in actualización.mensaje.entidades:
                 if entidad.tipo == 'bot_command':
-                    pass
-
-    def __agregar_chat(self, chat_id: str):
-        self.chats.append(chat_id)
+                    comando = actualización.mensaje.texto[entidad.desplazo:entidad.desplazo+entidad.longitud]
+                    for func in self.comandos:
+                        if (func.__name__ == comando[1:]):
+                            await func(self, actualización)
+                            
+                            
 
     async def __encender(self):
         print("Bot iniciado con token " + self.token_bot + "...")
         while True:
             print("Revisando API ...")
             await self.__obtener_actualizaciones()
-            self.__leer_actualizaciones()
+            await self.__leer_actualizaciones()
             await self.__limpiar_actualizaciones()
             await asyncio.sleep(1)
 
@@ -98,9 +96,13 @@ class Cliente:
 
 # FUNCIONES PÚBLICAS
 
-    async def enviar(self, chat: str, mensaje: str):
+    async def enviar(self, chat: str, mensaje: str, image = None):
         async with aiohttp.request('GET', self.url_default + '/sendMessage?' + "chat_id=" + chat + "&text=" + mensaje) as respuesta:
             dict_respuesta = json.loads(await respuesta.text())
+
+    def agregar_comando(self, función):
+        self.comandos.append(función)
+
 
     def iniciar(self):
         loop = asyncio.get_event_loop()

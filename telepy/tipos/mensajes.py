@@ -56,7 +56,7 @@ class MensajeMultimedia(Mensaje):
         self.vídeo = None # El mensaje contiene un Vídeo que se almacena en esta propiedad.
         self.vídeo_nota = None # El mensaje contiene una VídeoNota que se almacena en esta propiedad.
         self.nota_voz = None # El mensaje contiene una NotaVoz que se almacena en esta propiedad.
-        self.leyenda = 'Sin registrar' # La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
+        self.entidades_leyenda = 'Sin registrar' # La leyenda o nota al pie de la animación, audio, documento, foto, vídeo o voz.
 
 class MensajeCambios(Mensaje):
     """Un mensaje que registra un cambio en el Chat donde se recibió este mensaje."""
