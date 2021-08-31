@@ -4,8 +4,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contenidos:
 
-   Para iniciar
-   Tipos
+   para-iniciar
+   tipos
    acerca-de-mi
