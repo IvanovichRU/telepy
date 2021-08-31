@@ -51,7 +51,7 @@ language = 'es'
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-pygments_style = 'friendly'
+pygments_style = 'material'
 
 # -- Options for HTML output -------------------------------------------------
 

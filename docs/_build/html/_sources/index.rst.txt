@@ -9,9 +9,9 @@ esfuerzo.
 
 Ejemplo
 ==========
-.. code-block:: python
+.. code-block:: python3
    :linenos:
-   
+
    from telepy import *
    mi_cliente = Cliente("TOKEN DE TELEGRAM BOT")
    async def hola(cliente, actualización):
