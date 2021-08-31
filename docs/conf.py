@@ -19,7 +19,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'telepy'
+project = 'telepybots'
 copyright = '2021, Kevin Ivan Dominguez Jimenez'
 author = 'Kevin Ivan Dominguez Jimenez'
 

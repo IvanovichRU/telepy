@@ -1,6 +1,7 @@
 ##################
 Tipos
 ##################
+
 Los tipos dentro de esta librería estan diseñados a partir del `Telegram Bot API <https://core.telegram.org/bots/api>`_.
 La librería es inteligente y entenderá qué tipo debe asignar al JSON obtenido mediante el API. A continuación se encuentran
 todos los tipos de la librería.
@@ -17,10 +18,10 @@ Usuarios
 Usuario
 ----------
 
-| Representa un usuario de Telegram, es posible que sea un bot o un usuario real.
-| Este tipo es el padre de los dos tipos de usuario, los cuales son :ref:`persona-tp` y :ref:`bot-tp`.
-| Contiene las propiedades mínimas que todos los usuarios deben tener.
-| Sus propiedades son las de la siguiente tabla.
+Representa un usuario de Telegram, es posible que sea un bot o un usuario real.
+Este tipo es el padre de los dos tipos de usuario, los cuales son :ref:`persona-tp` y :ref:`bot-tp`.
+Contiene las propiedades mínimas que todos los usuarios deben tener.
+Sus propiedades son las de la siguiente tabla.
 
 ============= ====== =========================================================================
 Propiedad     Tipo   Descripción

@@ -24,6 +24,7 @@ import aiohttp
 import asyncio
 import json
 import conversiones
+from datetime import datetime, timezone
 
 class Cliente:
 
@@ -75,6 +76,8 @@ class Cliente:
 
         if actualización.mensaje.entidades:
             actualización.usuario = actualización.mensaje.remitente.usuario
+            actualización.hora = str(datetime.utcfromtimestamp(actualización.mensaje.fecha - 3600 * 5).strftime("%H:%M:%S"))
+
             for entidad in actualización.mensaje.entidades:
                 if entidad.tipo == 'bot_command':
                     comando = actualización.mensaje.texto[entidad.desplazo:entidad.desplazo+entidad.longitud]
