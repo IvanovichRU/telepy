@@ -52,7 +52,7 @@ language = 'es'
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 highlight_language = 'python3'
-pygments_style = 'rainbow_dash'
+pygments_style = 'sphinx'
 
 # -- Options for HTML output -------------------------------------------------
 
